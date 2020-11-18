@@ -1,0 +1,17 @@
+{
+  "name": "graphql-configurable-ctf",
+  "version": "0.1.0",
+  "description": "Configurable GraphQL CTF API",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "apollo-server-express": "^2.19.0",
+    "express": "^4.17.1",
+    "graphql": "^15.4.0",
+    "graphql-tools": "^7.0.1"
+  }
+}
