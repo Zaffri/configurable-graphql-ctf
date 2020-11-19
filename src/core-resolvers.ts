@@ -1,9 +1,9 @@
-const { gql } = require('apollo-server-express');
+const { gql } = require("apollo-server-express");
 
 module.exports = {
     Query: {
         getUserById: (obj, args, context) => {
-            console.log("TEST")
+            console.log("TEST");
             return {
                 userId: args.id,
                 email: "steven@test.com",
@@ -12,4 +12,4 @@ module.exports = {
             };
         }
     }
-}
+};

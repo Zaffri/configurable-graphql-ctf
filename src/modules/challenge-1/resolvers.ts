@@ -1,9 +1,9 @@
-const { gql } = require('apollo-server-express');
+const { gql } = require("apollo-server-express");
 
 module.exports = {
     Query: {
         getUserByEmail: (obj, args, context) => {
-            console.log("test")
+            console.log("test");
             return {
                 userId: args.email,
                 email: "john@test.com",
