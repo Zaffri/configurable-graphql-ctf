@@ -15,6 +15,7 @@ const allResolvers = [coreResolvers, challengeOneResolvers, challengeTwoResolver
 
 // Add some safe guards for GraphQL 
 // - add check to see if modules define no resolvers
+// - add safe guard check for duplicate resolver names across modules?
 
 const server = new ApolloServer({
     schema: makeExecutableSchema({
