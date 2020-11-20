@@ -1,6 +1,6 @@
 import Challenge from "./Challenge";
-import ChallengeConfiguration from "./ChallengeConfiguration";
-import ChallengeListItem from "./ChallengeListItem";
+import ChallengeConfiguration from "./interfaces/ChallengeConfiguration";
+import ChallengeListItem from "./interfaces/ChallengeListItem";
 import Fs from "fs";
 import * as path from "path";
 
@@ -21,6 +21,10 @@ export default class Configuration {
                 enabledChallenges.push(challenge);
             }
         });
+
+        if(enabledChallenges.length < 1) {
+            throw new Error("You must have at least 1 challenge module enabled. Modules can enabled at 'challenge-list.json'");
+        }
         this.enabledChallenges = enabledChallenges;
     }
 

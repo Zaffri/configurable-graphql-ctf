@@ -38,3 +38,8 @@ Resolvers for queries and mutations sit on a challenge module level, therefore t
 
 ### Challenge module structure
 
+
+## TODO
+- Get schema builder working
+- Build challenge modules
+- Add vulnerable config feature
