@@ -6,6 +6,7 @@
         "target": "es6",
         "noImplicitAny": true,
         "moduleResolution": "node",
+        "resolveJsonModule": true,
         "sourceMap": true,
         "outDir": "dist",
         "baseUrl": ".",
@@ -17,7 +18,8 @@
         }
     },
     "include": [
-        "src/**/*"
+        "src/**/*",
+        "src/**/*.json"
     ],
     "exclude": ["node_modules", "**/*.spec.ts"]
-};
+}

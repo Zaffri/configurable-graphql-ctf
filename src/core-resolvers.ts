@@ -1,6 +1,4 @@
-const { gql } = require("apollo-server-express");
-
-module.exports = {
+export default {
     Query: {
         getUserById: (obj, args, context) => {
             console.log("TEST");

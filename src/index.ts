@@ -1,40 +1,32 @@
-const { ApolloServer, gql, makeExecutableSchema } = require("apollo-server-express");
+import { ApolloServer, makeExecutableSchema, Config } from "apollo-server-express";
+import Express, { Application } from "express";
 
-const Express = require("express"); 
+import coreResolvers from "./core-resolvers.js";
+import coreSchema from "./core-schema.js";
 
-const schemaBuilder = require("./schema-builder.js");
+import ChallengeList from "./modules/challenge-list.json";
+import Configuration from "./core/Conguration";
 
-const coreResolvers = require("./core-resolvers.js");
-const coreSchema = require("./core-schema.js");
-const challengeOneSchema = require("./modules/challenge-1/schema.js");
-const challengeOneResolvers = require("./modules/challenge-1/resolvers.js");
-const challengeTwoSchema = require("./modules/challenge-2/schema.js");
-const challengeTwoResolvers = require("./modules/challenge-2/resolvers.js");
+const configuration = new Configuration(ChallengeList);
+const enabledChallenges = configuration.getEnabledChallenges();
 
-const allResolvers = [coreResolvers, challengeOneResolvers, challengeTwoResolvers];
-
-// Add some safe guards for GraphQL 
-// - add check to see if modules define no resolvers
-// - add safe guard check for duplicate resolver names across modules?
-
-const server = new ApolloServer({
+const serverConfig: Config = {
     schema: makeExecutableSchema({
         typeDefs: [
-            coreSchema,
-            ...[ challengeOneSchema, challengeTwoSchema ]
+            coreSchema
         ],
-        resolvers: {
-            Query: {},
-            ...schemaBuilder.stitchResolvers(allResolvers)
-        }
+        resolvers: coreResolvers
     })
+};
+
+const server: ApolloServer = new ApolloServer(serverConfig);
+
+const app: Application = Express();
+
+server.applyMiddleware({
+    app,
+    path: "/graphql"
 });
-
-console.log(schemaBuilder.stitchResolvers(allResolvers));
-
-const app = Express();
-
-server.applyMiddleware({ app });
 
 app.listen({ port: 4000 }, () =>
     console.log("🚀 Server ready at http://localhost:4000/graphql")
