@@ -1,5 +1,5 @@
 {
-    "name": "graphql-configurable-ctf",
+    "name": "configurable-graphql-ctf",
     "version": "0.1.0",
     "description": "Configurable GraphQL CTF API",
     "main": "index.js",
@@ -11,8 +11,8 @@
         "lint": "eslint . --ext .ts,.js",
         "lintfix": "eslint . --ext .ts,.js --fix"
     },
-    "author": "",
-    "license": "ISC",
+    "author": "Steven Morrison (https://github.com/Zaffri)",
+    "license": "MIT",
     "dependencies": {
         "apollo-server-express": "^2.19.0",
         "express": "^4.17.1",
