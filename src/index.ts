@@ -14,29 +14,37 @@ const enabledChallenges = configuration.getEnabledChallenges();
 
 // console.log(enabledChallenges);
 
-const schemaBuilder = new SchemaBuilder(enabledChallenges);
-schemaBuilder.generateSchema();
-const schema: ApolloSchema = schemaBuilder.getSchema();
+const init = async() => {
+    const schemaBuilder = new SchemaBuilder(enabledChallenges);
+    schemaBuilder.setCoreSchemaAndResolvers(coreSchema, coreResolvers);
+    await schemaBuilder.generateSchema();
 
-const serverConfig: Config = {
-    schema: makeExecutableSchema(schema)
-    // schema: makeExecutableSchema({
-    //     typeDefs: [
-    //         coreSchema
-    //     ],
-    //     resolvers: coreResolvers
-    // })
+    const schema: ApolloSchema = schemaBuilder.getSchema();
+    console.log(schema);
+    const serverConfig: Config = {
+        schema: makeExecutableSchema(schema)
+        // schema: makeExecutableSchema({
+        //     typeDefs: [
+        //         coreSchema
+        //     ],
+        //     resolvers: coreResolvers
+        // })
+    };
+
+    const server: ApolloServer = new ApolloServer(serverConfig);
+
+    const app: Application = Express();
+
+    server.applyMiddleware({
+        app,
+        path: "/graphql"
+    });
+
+    app.listen({ port: 4000 }, () =>
+        console.log("🚀 Server ready at http://localhost:4000/graphql")
+    );
 };
 
-const server: ApolloServer = new ApolloServer(serverConfig);
-
-const app: Application = Express();
-
-server.applyMiddleware({
-    app,
-    path: "/graphql"
+init().catch((err) => {
+    console.log(err);
 });
-
-app.listen({ port: 4000 }, () =>
-    console.log("🚀 Server ready at http://localhost:4000/graphql")
-);

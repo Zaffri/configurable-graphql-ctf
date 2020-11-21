@@ -1,5 +1,17 @@
 # Configurable GraphQL CTF
 
+## TODO / features
+- ~~Get schema builder working~~
+- resolve typescript errors
+- Schema builder and configuration unit tests - next priority
+- Build challenge modules
+- Add vulnerable config feature
+- replace fs in configuration class to use dynamic typescript import, just like schemabuilder
+- make schema.ts optional? some challenges may not require schema additons if they share core schema
+- add check for duplicate resolvers?at present user does not get error
+
+---
+
 This is an intentionally vulnerable GraphQL API in a capture the flag (CTF) style format. Out of the box it comes with 5 configurable challenge modules. Configurators should be able to configure challenge difficulty as well as switch challenges on and off. All challenge modules have a common theme of Ecommerce.
 
 The challenges are based on;
@@ -37,9 +49,3 @@ Similar to types, fields cannot be defined more than once as GraphQL will also t
 Resolvers for queries and mutations sit on a challenge module level, therefore the application has to "stitch" them together before building the complete API schema. The way that the stitching is done is that any duplicate resolver names will be overwritten by the last one that is found. Usually GraphQL would throw an error when a resolver is defined twice but the stitching process will only allow one. This means you may not see any errors if you have duplicates, therefore it is important to keep an eye out for this. If a resolver is not being executed then it may be because it is overwritten by a duplicate. In the future I may add a check for unique resolvers.
 
 ### Challenge module structure
-
-
-## TODO
-- Get schema builder working
-- Build challenge modules
-- Add vulnerable config feature

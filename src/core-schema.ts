@@ -7,8 +7,7 @@ export default gql`
 
     type User {
         userId: String
-        email: String
-        forename: String
-        surname: String
     }
+
+    type Mutation
 `;

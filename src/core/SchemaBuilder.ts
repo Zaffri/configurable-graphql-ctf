@@ -1,28 +1,26 @@
 import ApolloSchema from "./interfaces/ApolloSchema";
-import { gql } from "apollo-server-express";
 import { DocumentNode } from "graphql";
 import Challenge from "./Challenge";
-import Fs from "fs";
 
 export default class SchemaBuilder {
     private modules: Challenge[] = [];
     private moduleSchemas: DocumentNode[] = [];
-    private moduleResolvers = {}
-    private defaultResolverFileName = "resolvers";
-    private defaultSchemaFileName = "schema.graphql";
+    private moduleResolvers: DocumentNode[] = [];
+    private stitchedModuleResolvers = {}
+
+    private defaultResolverFileName = "resolvers.js";
+    private defaultSchemaFileName = "schema.js";
 
     constructor(enabledModules: Challenge[]) {
         this.modules = enabledModules;
     }
 
-    public generateSchema() {
-        this.modules.forEach((module) => {
-            // console.log(module.getModuleFolder());
-            // call method to populate moduleSchemas array
-            this.prepareModuleSchema(module);
-            // call method to stitch resolvers
-
-        });
+    public async generateSchema(): Promise<void> {
+        for(let x = 0; x<this.modules.length; x++) {
+            const currentModule = this.modules[x];
+            await this.prepareModuleSchemaAndResolvers(currentModule);
+        }
+        this.stitchResolvers(this.moduleResolvers);
     }
 
     public getSchema(): ApolloSchema {
@@ -31,16 +29,43 @@ export default class SchemaBuilder {
         } else {
             return {
                 typeDefs: this.moduleSchemas,
-                resolvers: this.moduleResolvers
+                resolvers: this.stitchedModuleResolvers
             };
         }
     }
 
-    private prepareModuleSchema(module: Challenge) {
-        const moduleSchemaPath: string = module.getModuleFolder() + this.defaultSchemaFileName;
-        console.log(moduleSchemaPath);
-        const moduleSchema = gql(Fs.readFileSync(moduleSchemaPath, "utf8"));
-        console.log(moduleSchema);
-        this.moduleSchemas.push(moduleSchema);
+    private async prepareModuleSchemaAndResolvers(module: Challenge) {
+        const modulePath: string = module.getModuleFolder();
+        const schema = await import(modulePath + this.defaultSchemaFileName);
+        const resolvers = await import(modulePath + this.defaultResolverFileName);
+
+        this.moduleSchemas.push(schema);
+        this.moduleResolvers.push(resolvers);
+    }
+
+    private stitchResolvers(moduleResolvers: DocumentNode[]) {
+        if(!moduleResolvers.length) return {};
+
+        const combinedResolvers = { Query: {} };
+
+        moduleResolvers.forEach((res) => {
+            const resolver = res.default;
+            for(const prop in resolver) {
+                if(combinedResolvers[prop]) {
+                    // Prop Exists - merge
+                    const newPropValue = { ...combinedResolvers[prop], ...resolver[prop] };
+                    combinedResolvers[prop] = newPropValue;
+                } else {
+                    // Does not exist - add new prop
+                    combinedResolvers[prop] = resolver[prop];
+                }
+            }
+        });
+        this.stitchedModuleResolvers = combinedResolvers;
+    }
+
+    public setCoreSchemaAndResolvers(schema: DocumentNode, resolvers: DocumentNode): void {
+        this.moduleSchemas.push(schema);
+        this.moduleResolvers.push({ default: resolvers });
     }
 }
