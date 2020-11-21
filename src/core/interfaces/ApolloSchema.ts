@@ -1,6 +1,7 @@
+import { DocumentNode } from "graphql";
 interface ApolloSchema {
-    typeDefs: any[],
-    resolvers: any,
+    typeDefs: DocumentNode[],
+    resolvers: unknown
 }
 
 export default ApolloSchema;

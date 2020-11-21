@@ -17,7 +17,8 @@ export default class Challenge {
     }
 
     private setModuleFolder() {
-        const folderPath = path.join(__dirname, `./../modules/${this.name}/${this.defaultModuleFolder}/${this.level}/`);
+        // const folderPath = path.join(__dirname, `./../modules/${this.name}/${this.defaultModuleFolder}/${this.level}/`);
+        const folderPath = path.join(__dirname, `./../modules/${this.name}/`);
         this.activeModuleFolder = folderPath;
     }
 
