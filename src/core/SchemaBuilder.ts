@@ -1,11 +1,12 @@
 import ApolloSchema from "./interfaces/ApolloSchema";
 import { DocumentNode } from "graphql";
+import SchemaNode from "./interfaces/SchemaNode";
 import Challenge from "./Challenge";
 
 export default class SchemaBuilder {
     private modules: Challenge[] = [];
     private moduleSchemas: DocumentNode[] = [];
-    private moduleResolvers: DocumentNode[] = [];
+    private moduleResolvers: SchemaNode[] = [];
     private stitchedModuleResolvers = {}
 
     private defaultResolverFileName = "resolvers.js";
@@ -43,23 +44,38 @@ export default class SchemaBuilder {
         this.moduleResolvers.push(resolvers);
     }
 
-    private stitchResolvers(moduleResolvers: DocumentNode[]) {
+    private stitchResolvers(moduleResolvers: SchemaNode[]) {
         if(!moduleResolvers.length) return {};
 
         const combinedResolvers = { Query: {} };
 
         moduleResolvers.forEach((res) => {
             const resolver = res.default;
-            for(const prop in resolver) {
-                if(combinedResolvers[prop]) {
-                    // Prop Exists - merge
-                    const newPropValue = { ...combinedResolvers[prop], ...resolver[prop] };
-                    combinedResolvers[prop] = newPropValue;
+            const resolverKeys: string[] = Object.keys(resolver);
+            
+            resolverKeys.forEach(resolverKey => {
+                const combinedResolversKeys: string[] = Object.keys(combinedResolvers);
+
+                if(combinedResolversKeys.includes(resolverKey)) {
+                    const mergedResolvers = { ...combinedResolvers[resolverKey], ...resolver[resolverKey] };
+                    combinedResolvers[resolverKey] = mergedResolvers;
                 } else {
-                    // Does not exist - add new prop
-                    combinedResolvers[prop] = resolver[prop];
+                    console.log(resolverKey + " not included");
+                    combinedResolvers[resolverKey] = resolver[resolverKey];
                 }
-            }
+            });
+
+            // for(const prop in resolver) {
+            //     console.log(Object.keys(combinedResolvers));
+            //     if(combinedResolvers[prop]) {
+            //         // Prop Exists - merge
+            //         const newPropValue = { ...combinedResolvers[prop], ...resolver[prop] };
+            //         combinedResolvers[prop] = newPropValue;
+            //     } else {
+            //         // Does not exist - add new prop
+            //         combinedResolvers[prop] = resolver[prop];
+            //     }
+            // }
         });
         this.stitchedModuleResolvers = combinedResolvers;
     }
