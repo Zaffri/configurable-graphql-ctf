@@ -3,7 +3,8 @@
 ## TODO / features
 - ~~Get schema builder working~~
 - resolve typescript errors
-- Schema builder and configuration unit tests - next priority
+- add levels functionality
+- Schema builder and configuration unit tests - HIGH priority
 - Build challenge modules
 - Add vulnerable config feature
 - replace fs in configuration class to use dynamic typescript import, just like schemabuilder
