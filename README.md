@@ -2,8 +2,8 @@
 
 ## TODO / features
 - ~~Get schema builder working~~
-- resolve typescript errors
 - add levels functionality
+- resolve typescript errors
 - Schema builder and configuration unit tests - HIGH priority
 - Build challenge modules
 - Add vulnerable config feature
