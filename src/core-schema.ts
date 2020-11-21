@@ -9,5 +9,7 @@ export default gql`
         userId: String
     }
 
-    type Mutation
+    type Mutation {
+        updateProfile(id: Int!): User
+    }
 `;

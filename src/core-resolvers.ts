@@ -9,5 +9,15 @@ export default {
                 surname: "morrison"
             };
         }
-    }
+    },
+    Mutation: {
+        updateProfile(obj, args, context) {
+            return {
+                userId: args.id,
+                email: "steven@test.com",
+                forename: "steven",
+                surname: "morrison"
+            };
+        }
+    } 
 };

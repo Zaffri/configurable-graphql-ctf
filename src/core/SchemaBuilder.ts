@@ -1,12 +1,11 @@
-import ApolloSchema from "./interfaces/ApolloSchema";
+import { IExecutableSchemaDefinition } from "apollo-server-express";
 import { DocumentNode } from "graphql";
-import SchemaNode from "./interfaces/SchemaNode";
 import Challenge from "./Challenge";
 
 export default class SchemaBuilder {
     private modules: Challenge[] = [];
     private moduleSchemas: DocumentNode[] = [];
-    private moduleResolvers: SchemaNode[] = [];
+    private moduleResolvers: Record<string, unknown>[] = [];
     private stitchedModuleResolvers = {}
 
     private defaultResolverFileName = "resolvers.js";
@@ -24,7 +23,7 @@ export default class SchemaBuilder {
         this.stitchResolvers(this.moduleResolvers);
     }
 
-    public getSchema(): ApolloSchema {
+    public getSchema(): IExecutableSchemaDefinition {
         if(this.moduleSchemas.length < 1 || !this.moduleResolvers) {
             throw new Error("Your enabled challenge modules cannot have no schemas or resolvers defined.");
         } else {
@@ -44,7 +43,7 @@ export default class SchemaBuilder {
         this.moduleResolvers.push(resolvers);
     }
 
-    private stitchResolvers(moduleResolvers: SchemaNode[]) {
+    private stitchResolvers(moduleResolvers: Record<string, unknown>[]) {
         if(!moduleResolvers.length) return {};
 
         const combinedResolvers = { Query: {} };
@@ -64,23 +63,11 @@ export default class SchemaBuilder {
                     combinedResolvers[resolverKey] = resolver[resolverKey];
                 }
             });
-
-            // for(const prop in resolver) {
-            //     console.log(Object.keys(combinedResolvers));
-            //     if(combinedResolvers[prop]) {
-            //         // Prop Exists - merge
-            //         const newPropValue = { ...combinedResolvers[prop], ...resolver[prop] };
-            //         combinedResolvers[prop] = newPropValue;
-            //     } else {
-            //         // Does not exist - add new prop
-            //         combinedResolvers[prop] = resolver[prop];
-            //     }
-            // }
         });
         this.stitchedModuleResolvers = combinedResolvers;
     }
 
-    public setCoreSchemaAndResolvers(schema: DocumentNode, resolvers: DocumentNode): void {
+    public setCoreSchemaAndResolvers(schema: DocumentNode, resolvers: Record<string, unknown>): void {
         this.moduleSchemas.push(schema);
         this.moduleResolvers.push({ default: resolvers });
     }

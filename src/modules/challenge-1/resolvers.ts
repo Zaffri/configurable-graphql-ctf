@@ -11,7 +11,7 @@ export default {
         } 
     },
     Mutation: {
-        updateProfile: (obj, args, context) => {
+        updateProduct: (obj, args, context) => {
             return {
                 userId: args.id,
                 email: "update email",

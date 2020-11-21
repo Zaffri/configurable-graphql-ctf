@@ -9,6 +9,6 @@ module.exports = gql`
         surname: String
     }
     extend type Mutation {
-        updateProfile(id: Int!): User
+        updateProduct(id: Int!): User
     }
 `;
