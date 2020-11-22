@@ -1,20 +1,30 @@
-import * as mocha from "mocha";
-import * as chai from "chai";
+import * as path from "path";
+import { expect } from "chai";
 
 import Challenge from "./../src/core/Challenge";
 
 describe("Challenge.ts", () => {
+    describe("When challenge config is set to a specific difficulty", () => {
+        it("challenge should be set to that difficulty", () => {
+            const name = "challenge-test";
+            const description = "test challenge";
+            const level = "10";
+            const vulnerable = true;
+            const expectedFolderPath = path.join(__dirname, `./../src/modules/${name}/levels/${level}/`);
 
-    describe("When challenge is declared and enabled", () => {
-
-        xit("challenge configuration should be setup", () => {
-            const challenge = new Challenge("challenge-test", "test challenge", "10", true);
+            const challenge = new Challenge(name, description, level, vulnerable);
+            const result = challenge.getModuleFolder();
+            expect(expectedFolderPath).to.equal(result);
         });
-
-        xit("set path to module folder depending on difficulty", () => {
-
-        });
-
     });
-
+    describe("When challenge config is set to vulernable = true", () => {
+        xit("challenge can be exploited", () => {
+            console.log("pending test");
+        });
+    });
+    describe("When challenge config is set to vulernable = false", () => {
+        xit("challenge cannot be exploited", () => {
+            console.log("pending test");
+        });
+    });
 });
