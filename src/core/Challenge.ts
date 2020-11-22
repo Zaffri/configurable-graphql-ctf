@@ -24,4 +24,8 @@ export default class Challenge {
     public getModuleFolder(): string {
         return this.activeModuleFolder;
     }
+
+    public getName(): string {
+        return this.name;
+    }
 }
