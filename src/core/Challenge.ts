@@ -2,13 +2,13 @@ import * as path from "path";
 export default class Challenge {
     private name: string;
     private description: string;
-    private level: number;
+    private level: string;
     private vulnerable: boolean;
     private activeModuleFolder: string;
 
-    private defaultModuleFolder = "levels";
+    private defaultDifficultyFolderName = "levels";
 
-    constructor(name: string, description: string, level: number, vulnerable: boolean) {
+    constructor(name: string, description: string, level: string, vulnerable: boolean) {
         this.name = name;
         this.description = description;
         this.level = level;
@@ -17,8 +17,7 @@ export default class Challenge {
     }
 
     private setModuleFolder() {
-        // const folderPath = path.join(__dirname, `./../modules/${this.name}/${this.defaultModuleFolder}/${this.level}/`);
-        const folderPath = path.join(__dirname, `./../modules/${this.name}/`);
+        const folderPath = path.join(__dirname, `./../modules/${this.name}/${this.defaultDifficultyFolderName}/${this.level}/`);
         this.activeModuleFolder = folderPath;
     }
 

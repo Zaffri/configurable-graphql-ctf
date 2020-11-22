@@ -1,7 +1,7 @@
 interface ChallengeConfiguration {
     name: string,
     description: string,
-    level: number,
+    level: string,
     vulnerable: boolean
 }
 
