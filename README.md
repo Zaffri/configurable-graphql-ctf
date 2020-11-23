@@ -92,8 +92,12 @@ One issue is that when defining a type in the core schema it must not be empty a
 
 Since these default fields are defined outside the modules, they cannot be configured so they are present at all times - to ensure shared types are never empty.
 
+Note: types will not need to be shared across challenge levels e.g. if "challenge-1" has difficulty levels "1" and "2", since only one can be active at once present at once then the type does not need to exist in the core schema.
+
 ### 4.6 Design Consideration: Shared Fields
 Similar to types, fields cannot be defined more than once as GraphQL will also throw an error. These can also be defined in the core schema along with the shared types. As mentioned above, they will be present at all times and cannot be turned off using configuration.
+
+Like shared types (4.5), shared fields do not need to be shared across a challenges difficulties, unless the difficulty levels are from different challenges.
 
 ### 4.7 Design Consideration: Queries and Mutations
 Resolvers for queries and mutations sit on a challenge module level, therefore the application has to "stitch" them together before building the complete API schema. The way that the stitching is done is that any duplicate resolver names will be overwritten by the last one that is found. Usually GraphQL would throw an error when a resolver is defined twice but the stitching process will only allow one. This means you may not see any errors if you have duplicates, therefore it is important to keep an eye out for this. If a resolver is not being executed then it may be because it is overwritten by a duplicate. In the future I may add a check for unique resolvers.

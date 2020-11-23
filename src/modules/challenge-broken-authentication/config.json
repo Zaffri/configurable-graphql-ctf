@@ -1,0 +1,6 @@
+{
+    "name": "challenge-broken-authentication",
+    "description": "The user must exploit broken authentication in order to retrieve the flag.",
+    "level": "2",
+    "vulnerable": true
+}
