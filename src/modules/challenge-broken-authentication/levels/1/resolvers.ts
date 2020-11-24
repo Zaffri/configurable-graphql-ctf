@@ -1,36 +1,36 @@
+import data from "./data";
+
+interface Document {
+    name: string,
+    private: boolean,
+    category: string,
+    fileContents: string
+}
+
+interface Category {
+    name: string,
+    private: boolean,
+    description: string
+}
+
 export default {
     Query: {
-        getDocuments: (obj, args, context): Record<string, unknown>[] => {
-            return [
-                {
-                    name: "Document 1",
-                    fileContents: "Some contents for doc 1."
-                },
-                {
-                    name: "Document 2",
-                    fileContents: "Some contents for doc 2."
-                }
-            ];
+        getDocuments: (obj: undefined, args, context): Document[] => {
+            if(!args.filterByPrivateDocuments) {
+                return data.documents.filter((document) => !document.private);
+            } else {
+                throw new Error("Only logged in staff members can access private documents");
+            }
         },
-        getDocumentsByCategories: (obj, args, context): Record<string, unknown>[] => {
-            return [
-                {
-                    name: "Document 1 - " + args.categoryName,
-                    fileContents: "Some contents for doc 1."
-                }
-            ];
+        getDocumentsByCategory: (obj: undefined, args, context): Document[] => {
+            const categoryInput = args.categoryName.toLowerCase();
+            const documentsByCategory: Document[] = data.documents.filter((document) => document.category.toLowerCase() === categoryInput);
+
+            if(!documentsByCategory.length) throw new Error(`Cannot find any documents for category: ${categoryInput}`);
+            return documentsByCategory;
         },
-        listDocumentCategories: (obj, args, context): Record<string, unknown>[] => {
-            return [
-                {
-                    name: "Public category 1",
-                    description: "Public documents"
-                },
-                {
-                    name: "Staff Procedures",
-                    description: "Internal staff documents"
-                }
-            ];
+        listDocumentCategories: (): Category[] => {
+            return data.categories;
         }
     }
 };
