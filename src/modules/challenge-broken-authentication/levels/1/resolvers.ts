@@ -1,4 +1,5 @@
 import data from "./data";
+import {  } from "graphql";
 
 interface Document {
     name: string,
@@ -13,16 +14,24 @@ interface Category {
     description: string
 }
 
+type GetDocumentsArguments = {
+    filterByPrivateDocuments: boolean
+}
+
+type GetDocumentsByCategoryArguments = {
+    categoryName: string
+}
+
 export default {
     Query: {
-        getDocuments: (obj: undefined, args, context): Document[] => {
+        getDocuments: (obj: undefined, args: GetDocumentsArguments): Document[] => {
             if(!args.filterByPrivateDocuments) {
                 return data.documents.filter((document) => !document.private);
             } else {
                 throw new Error("Only logged in staff members can access private documents");
             }
         },
-        getDocumentsByCategory: (obj: undefined, args, context): Document[] => {
+        getDocumentsByCategory: (obj: undefined, args: GetDocumentsByCategoryArguments): Document[] => {
             const categoryInput = args.categoryName.toLowerCase();
             const documentsByCategory: Document[] = data.documents.filter((document) => document.category.toLowerCase() === categoryInput);
 
