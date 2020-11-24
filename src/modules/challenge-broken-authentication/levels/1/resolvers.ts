@@ -1,21 +1,10 @@
-import data from "./data";
-import {  } from "graphql";
-
-interface Document {
-    name: string,
-    private: boolean,
-    category: string,
-    fileContents: string
-}
+import { Document, GetDocumentsArguments } from "../../module-types";
+import data from "../../module-data";
 
 interface Category {
     name: string,
     private: boolean,
     description: string
-}
-
-type GetDocumentsArguments = {
-    filterByPrivateDocuments: boolean
 }
 
 type GetDocumentsByCategoryArguments = {

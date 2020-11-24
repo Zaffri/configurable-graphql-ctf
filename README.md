@@ -1,11 +1,8 @@
 # Configurable GraphQL CTF
 This is currently a WIP...
 ## TODO / features
-- ~~Get schema builder working~~
-- ~~add levels functionality~~
-- Unit tests for existing code - HIGH priority
-- resolve typescript errors
-- Build challenge modules
+- build challenge (1-5) modules
+- add safety check to ensure all modules have a flag set! Add flag to Challenge class.
 - Add vulnerable config feature
 - replace fs in configuration class to use dynamic typescript import, just like schemabuilder
 - make schema.ts optional? some challenges may not require schema additons if they share core schema

@@ -1,16 +1,14 @@
+import { Document, GetDocumentsArguments } from "../../module-types";
+import data from "../../module-data";
+
 export default {
     Query: {
-        getDocuments: (obj, args, context): Record<string, unknown>[] => {
-            return [
-                {
-                    name: "Document 3",
-                    fileContents: "Some contents for doc 3."
-                },
-                {
-                    name: "Document 4",
-                    fileContents: "Some contents for doc 4."
-                }
-            ];
+        getDocuments: (obj: undefined, args: GetDocumentsArguments): Document[] => {
+            if(!args.filterByPrivateDocuments) {
+                return data.documents.filter((document) => !document.private);
+            } else {
+                throw new Error("Only logged in staff members can access private documents");
+            }
         }
     },
     Mutation: {
