@@ -3,7 +3,8 @@ import data from "../../module-data";
 
 export default {
     Query: {
-        getDocuments: (obj: undefined, args: GetDocumentsArguments): Document[] => {
+        getDocuments: (obj: undefined, args: GetDocumentsArguments, context: any): Document[] => {
+            console.log(context);
             if(!args.filterByPrivateDocuments) {
                 return data.documents.filter((document) => !document.private);
             } else {

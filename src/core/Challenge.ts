@@ -5,14 +5,16 @@ export default class Challenge {
     private level: string;
     private vulnerable: boolean;
     private activeModuleFolder: string;
+    private extendsContext: boolean;
 
     private defaultDifficultyFolderName = "levels";
 
-    constructor(name: string, description: string, level: string, vulnerable: boolean) {
+    constructor(name: string, description: string, level: string, vulnerable: boolean, extendsContext: boolean) {
         this.name = name;
         this.description = description;
         this.level = level;
         this.vulnerable = vulnerable;
+        this.extendsContext = extendsContext;
         this.setModuleFolder();
     }
 
@@ -27,5 +29,9 @@ export default class Challenge {
 
     public getName(): string {
         return this.name;
+    }
+
+    public getExtendsConfig(): boolean {
+        return this.extendsContext;
     }
 }

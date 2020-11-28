@@ -1,6 +1,8 @@
 # Configurable GraphQL CTF
 This is currently a WIP...
 ## TODO / features
+- ~add extend GraphQL context functionality~
+- pass module paths as dependency to configuration setup, as the tests currently rely on configured modules! i.e. testing not possible in some scenarios
 - build challenge (1-5) modules
 - add safety check to ensure all modules have a flag set! Add flag to Challenge class.
 - Add vulnerable config feature
