@@ -25,8 +25,7 @@ const init = async() => {
 
     if(configuration.isContextExtended()) {
         const context = new Context(configuration.getModulesThatExtendContext());
-        const contextObj = await context.getContext();
-        if(contextObj) serverConfig.context = contextObj;
+        serverConfig.context = async ({ req }) => await context.getContext(req);
     }
 
     const server: ApolloServer = new ApolloServer(serverConfig);

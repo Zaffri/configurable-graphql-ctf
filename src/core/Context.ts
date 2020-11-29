@@ -8,14 +8,14 @@ export default class Context {
         this.challengesThatExtendContext = challenges;
     }
 
-    public async getContext(): Promise<any> {
+    public async getContext(req: any): Promise<any> {
         if(!this.challengesThatExtendContext.length) return null;
         let contextObj = {};
 
         for(let x=0; x<this.challengesThatExtendContext.length; x++) {
             const challenge = this.challengesThatExtendContext[x];
             const contextFunction = await import(challenge.getModuleFolder() + this.defaultContextFileName);
-            const newContext = contextFunction.default(contextObj);
+            const newContext = contextFunction.default(req, contextObj);
             contextObj = newContext;
         }
         return contextObj;
