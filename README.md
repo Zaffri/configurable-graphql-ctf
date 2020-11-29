@@ -14,6 +14,7 @@ This is currently a WIP...
 - build sql-injection - scenario 2
 - add safety check to ensure all modules have a flag set! Add flag to Challenge class.
 - Add vulnerable config feature
+- add level config so that each level can have "extendsConfig" set. Otherwise when switching between modules the user has to set "extendsConfig" depending on the level!
 - replace fs in configuration class to use dynamic typescript import, just like schemabuilder
 - make schema.ts optional? some challenges may not require schema additons if they share core schema
 - add check for duplicate resolvers?at present user does not get error

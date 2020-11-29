@@ -4,7 +4,7 @@
     "description": "Configurable GraphQL CTF API",
     "main": "index.js",
     "scripts": {
-        "test": "mocha -r ts-node/register tests/**/*.spec.ts",
+        "test": "cross-env NODE_ENV=test mocha -r ts-node/register tests/**/*.spec.ts",
         "dev": "nodemon dist/index.js",
         "tsc": "tsc -w",
         "tscbuild": "tsc",
@@ -15,6 +15,7 @@
     "license": "MIT",
     "dependencies": {
         "apollo-server-express": "^2.19.0",
+        "dotenv": "^8.2.0",
         "express": "^4.17.1",
         "graphql": "^15.4.0",
         "graphql-tools": "^7.0.1",
@@ -22,6 +23,7 @@
     },
     "devDependencies": {
         "@types/chai": "^4.2.14",
+        "@types/dotenv": "^8.2.0",
         "@types/express": "github:types/express",
         "@types/graphql": "^14.5.0",
         "@types/jsonwebtoken": "^8.5.0",
@@ -30,6 +32,7 @@
         "@typescript-eslint/eslint-plugin": "^4.8.1",
         "@typescript-eslint/parser": "^4.8.1",
         "chai": "^4.2.0",
+        "cross-env": "^7.0.2",
         "eslint": "^7.13.0",
         "mocha": "^8.2.1",
         "nodemon": "^2.0.6",

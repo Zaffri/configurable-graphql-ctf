@@ -1,6 +1,6 @@
 interface ChallengeListItem {
     name: string,
-    enabled: boolean,
+    enabled: boolean
 }
 
 export default ChallengeListItem;

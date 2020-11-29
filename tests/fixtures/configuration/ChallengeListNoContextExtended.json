@@ -1,0 +1,14 @@
+[
+    {
+        "name": "challenge-1",
+        "enabled": false
+    },
+    {
+        "name": "challenge-2",
+        "enabled": true
+    },
+    {
+        "name": "challenge-3",
+        "enabled": false
+    }
+]

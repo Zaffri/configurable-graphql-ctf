@@ -1,0 +1,8 @@
+{
+    "name": "challenge-2",
+    "description": "Test Module 2",
+    "level": "2",
+    "vulnerable": true,
+    "flag": "FLAG_xiwrLV9Xirij7vlP",
+    "extendsContext": false
+}
