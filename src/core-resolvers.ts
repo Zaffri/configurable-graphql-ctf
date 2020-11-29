@@ -1,10 +1,10 @@
 export default {
     Query: {
-        getUserById: (obj, args, context) => {
+        getUserByEmail: (obj, args, context) => {
             console.log("TEST");
             return {
-                userId: args.id,
-                email: "steven@test.com",
+                userId: 1,
+                email: args.email,
                 forename: "steven",
                 surname: "morrison"
             };

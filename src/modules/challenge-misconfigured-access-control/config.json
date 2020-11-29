@@ -1,0 +1,8 @@
+{
+    "name": "challenge-misconfigured-access-control",
+    "description": "The user must exploit misconfigured access control in order to retrieve the flag.",
+    "level": "1",
+    "vulnerable": true,
+    "flag": "FLAG_xiIasn7382irij7vlP",
+    "extendsContext": false
+}

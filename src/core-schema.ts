@@ -2,11 +2,11 @@ import { gql } from "apollo-server-express";
 
 export default gql`
     type Query {
-        getUserById(id: Int!): User
+        getUserByEmail(email: String!): User
     }
 
     type User {
-        userId: String
+        userId: Int
     }
 
     type Mutation {
