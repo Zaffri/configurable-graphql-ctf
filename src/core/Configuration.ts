@@ -3,6 +3,7 @@ import ChallengeConfiguration from "./interfaces/ChallengeConfiguration";
 import ChallengeListItem from "./interfaces/ChallengeListItem";
 import Fs from "fs";
 import * as path from "path";
+import Helpers from "./Helpers";
 
 export default class Configuration {
     private enabledChallenges: Challenge[] = [];
@@ -30,8 +31,8 @@ export default class Configuration {
 
     private getChallengeConfiguration(challengeName: string): ChallengeConfiguration {
         try {
-            const challengeModulePath = `./../modules/${challengeName}/config.json`;
-            const data = Fs.readFileSync(path.join(__dirname, challengeModulePath), "utf8");
+            const challengeModulePath = `${Helpers.getBaseModulesPath()}/${challengeName}/config.json`;
+            const data = Fs.readFileSync(path.join(process.env.BASE_PROJECT_PATH, challengeModulePath), "utf8");
             return JSON.parse(data);
         } catch(err) {
             throw new Error("Cannot resolve config.json for " + challengeName + " - " + err);

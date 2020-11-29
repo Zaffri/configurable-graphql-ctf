@@ -13,6 +13,10 @@ describe("Challenge.ts", () => {
             const extendsConfig = false;
             const expectedFolderPath = path.join(__dirname, `./../src/modules/${name}/levels/${level}/`);
 
+            // Action: setup test modules!
+            // const basePath = __dirname.replace(/tests(\/|\\|)/gi, "");
+            // process.env.BASE_PROJECT_PATH = path.join(basePath, );
+
             const challenge = new Challenge(name, description, level, vulnerable, extendsConfig);
             const result = challenge.getModuleFolder();
             expect(expectedFolderPath).to.equal(result);

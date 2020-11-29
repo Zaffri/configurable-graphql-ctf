@@ -1,4 +1,5 @@
 import * as path from "path";
+import Helpers from "./Helpers";
 export default class Challenge {
     private name: string;
     private description: string;
@@ -19,8 +20,9 @@ export default class Challenge {
     }
 
     private setModuleFolder() {
-        const folderPath = path.join(__dirname, `./../modules/${this.name}/${this.defaultDifficultyFolderName}/${this.level}/`);
-        this.activeModuleFolder = folderPath;
+        const challengeLevelPath = `${Helpers.getBaseModulesPath()}/${this.name}/${this.defaultDifficultyFolderName}/${this.level}/`;
+        const fullPath = path.join(process.env.BASE_PROJECT_PATH, challengeLevelPath);
+        this.activeModuleFolder = fullPath;
     }
 
     public getModuleFolder(): string {

@@ -1,5 +1,10 @@
 import { ApolloServer, makeExecutableSchema, Config, IExecutableSchemaDefinition } from "apollo-server-express";
 import Express, { Application } from "express";
+import dotenv from "dotenv";
+import Helpers from "./core/Helpers";
+
+dotenv.config();
+Helpers.setBaseProjectPath(__dirname);
 
 import coreResolvers from "./core-resolvers.js";
 import coreSchema from "./core-schema.js";
