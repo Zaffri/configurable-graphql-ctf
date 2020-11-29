@@ -5,11 +5,11 @@ export default gql`
         getUserByEmail(email: String!): User
     }
 
-    type User {
-        userId: Int
-    }
-
     type Mutation {
         updateProfile(id: Int!): User
+    }
+
+    type User {
+        userId: Int
     }
 `;
