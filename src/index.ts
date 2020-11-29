@@ -6,6 +6,7 @@ import coreSchema from "./core-schema.js";
 
 import ChallengeList from "./modules/challenge-list.json";
 import Configuration from "./core/Configuration";
+import Context from "./core/Context";
 import SchemaBuilder from "./core/SchemaBuilder";
 
 const configuration = new Configuration(ChallengeList);
@@ -21,6 +22,11 @@ const init = async() => {
     const serverConfig: Config = {
         schema: makeExecutableSchema(schema)
     };
+
+    if(configuration.isContextExtended()) {
+        const context = new Context(configuration.getModulesThatExtendContext());
+        serverConfig.context = async ({ req }) => await context.getContext(req);
+    }
 
     const server: ApolloServer = new ApolloServer(serverConfig);
 

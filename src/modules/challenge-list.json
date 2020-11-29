@@ -1,14 +1,6 @@
 [
     {
-        "name": "challenge-1",
+        "name": "challenge-broken-authentication",
         "enabled": true
-    },
-    {
-        "name": "challenge-2",
-        "enabled": true
-    },
-    {
-        "name": "challenge-3",
-        "enabled": false
     }
 ]

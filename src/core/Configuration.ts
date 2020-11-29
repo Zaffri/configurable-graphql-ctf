@@ -17,7 +17,7 @@ export default class Configuration {
         challengeList.forEach((challengeListItem: ChallengeListItem) => {
             if(challengeListItem.enabled) {
                 const config: ChallengeConfiguration = this.getChallengeConfiguration(challengeListItem.name);
-                const challenge = new Challenge(config.name, config.description, config.level, config.vulnerable);
+                const challenge = new Challenge(config.name, config.description, config.level, config.vulnerable, config.extendsContext);
                 enabledChallenges.push(challenge);
             }
         });
@@ -40,5 +40,13 @@ export default class Configuration {
 
     public getEnabledChallenges(): Challenge[] {
         return this.enabledChallenges;
+    }
+
+    public isContextExtended(): boolean {
+        return this.enabledChallenges.some(challenge => challenge.getExtendsConfig());
+    }
+
+    public getModulesThatExtendContext(): Challenge[] {
+        return this.enabledChallenges.filter(challenge => challenge.getExtendsConfig());
     }
 }
