@@ -1,14 +1,18 @@
 import data from "../../module-data";
 
+type UserIdArguments = {
+    userId: number
+};
+
+type Order = {
+    orderId: number,
+    orderNote: string,
+    totalCost: number
+};
+
 interface User {
     userId: number,
-    orders: [
-        {
-            orderId: number,
-            orderNote: string,
-            totalCost: number
-        }
-    ]
+    orders: Order[]
 }
 
 export default {
@@ -16,10 +20,9 @@ export default {
         getOrdersByUser: (): void => {
             throw new Error("You cannot query another users orders!");
         },
-        getUserById: (obj: undefined, args): User => {
+        getUserById: (obj: undefined, args: UserIdArguments): User => {
             const user = data.users.find(user => user.userId === args.userId);
             if(!user) throw new Error("Cannot find user with ID " + args.userId);
-            console.log(user);
             return user;
         }
     }
