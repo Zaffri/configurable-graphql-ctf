@@ -7,7 +7,7 @@ This is currently a WIP...
 - build malicious-queries - scenario 2
 - build sql-injection - scenario 1
 - build sql-injection - scenario 2
-- go over every challenge, tidy types and interfaces (resuse).
+- go over every challenge, tidy types and interfaces (resuse). Also add JSON files for data, reuse to keep data consistent across challenges. The challenge resolvers can pull in/map only the fields that they require! 
 - challenge module unit test
 - add safety check to ensure all modules have a flag set! Add flag to Challenge class.
 - Add vulnerable config feature
