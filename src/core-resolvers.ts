@@ -1,7 +1,21 @@
+type EmailArguments = {
+    email: string
+}
+
+type IdArguments = {
+    id: number
+}
+
+interface User {
+    userId: number,
+    email: string,
+    forename: string,
+    surname: string
+}
+
 export default {
     Query: {
-        getUserByEmail: (obj, args, context) => {
-            console.log("TEST");
+        getUserByEmail: (obj: undefined, args: EmailArguments): User => {
             return {
                 userId: 1,
                 email: args.email,
@@ -11,7 +25,7 @@ export default {
         }
     },
     Mutation: {
-        updateProfile(obj, args, context) {
+        updateProfile(obj: undefined, args: IdArguments): User {
             return {
                 userId: args.id,
                 email: "steven@test.com",
