@@ -33,7 +33,7 @@ export default class Challenge {
         return this.name;
     }
 
-    public getExtendsConfig(): boolean {
+    public getExtendsContext(): boolean {
         return this.extendsContext;
     }
 }

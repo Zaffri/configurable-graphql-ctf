@@ -44,10 +44,10 @@ export default class Configuration {
     }
 
     public isContextExtended(): boolean {
-        return this.enabledChallenges.some(challenge => challenge.getExtendsConfig());
+        return this.enabledChallenges.some(challenge => challenge.getExtendsContext());
     }
 
     public getModulesThatExtendContext(): Challenge[] {
-        return this.enabledChallenges.filter(challenge => challenge.getExtendsConfig());
+        return this.enabledChallenges.filter(challenge => challenge.getExtendsContext());
     }
 }

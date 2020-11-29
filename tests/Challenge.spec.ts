@@ -1,21 +1,21 @@
 import * as path from "path";
 import { expect } from "chai";
+import dotenv from "dotenv";
+dotenv.config();
 
 import Challenge from "./../src/core/Challenge";
+
+process.env.BASE_PROJECT_PATH = __dirname.replace(/tests(\/|\\|)/gi, "");
 
 describe("Challenge.ts", () => {
     describe("When challenge config is set to a specific difficulty", () => {
         it("challenge should be set to that difficulty", () => {
             const name = "challenge-test";
             const description = "test challenge";
-            const level = "10";
+            const level = "1";
             const vulnerable = true;
             const extendsConfig = false;
-            const expectedFolderPath = path.join(__dirname, `./../src/modules/${name}/levels/${level}/`);
-
-            // Action: setup test modules!
-            // const basePath = __dirname.replace(/tests(\/|\\|)/gi, "");
-            // process.env.BASE_PROJECT_PATH = path.join(basePath, );
+            const expectedFolderPath = path.join(process.env.BASE_PROJECT_PATH, `/tests/test-modules/${name}/levels/${level}/`);
 
             const challenge = new Challenge(name, description, level, vulnerable, extendsConfig);
             const result = challenge.getModuleFolder();
@@ -32,14 +32,30 @@ describe("Challenge.ts", () => {
             console.log("pending test");
         });
     });
-    describe("When at least 1 challenge extends context", () => {
-        xit("GraphQL context callback is created", () => {
-            console.log("pending test");
+    describe("When challenge extends context", () => {
+        it("GraphQL context is modified by challenge context callback", () => {
+            const name = "challenge-test";
+            const description = "test challenge";
+            const level = "1";
+            const vulnerable = true;
+            const extendsConfig = true;
+
+            const challenge = new Challenge(name, description, level, vulnerable, extendsConfig);
+            const result = challenge.getExtendsContext();
+            expect(result).to.equal(extendsConfig);
         });
     });
-    describe("When no challenges extend context", () => {
-        xit("No GraphQL context is set", () => {
-            console.log("pending test");
+    describe("When challenges does not extend context", () => {
+        it("GraphQL context is not modified", () => {
+            const name = "challenge-test";
+            const description = "test challenge";
+            const level = "1";
+            const vulnerable = true;
+            const extendsConfig = false;
+
+            const challenge = new Challenge(name, description, level, vulnerable, extendsConfig);
+            const result = challenge.getExtendsContext();
+            expect(result).to.equal(extendsConfig);
         });
     });
 });
