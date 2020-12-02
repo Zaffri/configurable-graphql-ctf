@@ -1,17 +1,14 @@
 # Configurable GraphQL CTF
 This is currently a WIP...
 ## TODO / features
-- ~add extend GraphQL context functionality~
-- pass module paths as dependency to configuration setup, as the tests currently rely on configured modules! i.e. testing not possible in some scenarios
-- ~build broken-auth - scenario 1~
 - build broken-auth - scenario 2 - got working, however I've commented out "none" algorithm check out directly in node_module. Will need to find another version that allows "none" or fork and create my own version. Will comeback to this - the check/message thats causing issues is "jwt signature is required". Look at updating this to allow users to define their own algorithm, i.e. user should be able to change algorithm to none, modify payload to retrieve flag.
-- build access-control - scenario 1
-- build access-control - scenario 2
 - build scalar-validation - scenario 1
 - build malicious-queries - scenario 1
 - build malicious-queries - scenario 2
 - build sql-injection - scenario 1
 - build sql-injection - scenario 2
+- go over every challenge, tidy types and interfaces (resuse). Also add JSON files for data, reuse to keep data consistent across challenges. The challenge resolvers can pull in/map only the fields that they require! 
+- challenge module unit test
 - add safety check to ensure all modules have a flag set! Add flag to Challenge class.
 - Add vulnerable config feature
 - add level config so that each level can have "extendsConfig" set. Otherwise when switching between modules the user has to set "extendsConfig" depending on the level!

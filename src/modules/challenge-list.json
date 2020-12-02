@@ -1,6 +1,10 @@
 [
     {
         "name": "challenge-broken-authentication",
+        "enabled": false
+    },
+    {
+        "name": "challenge-misconfigured-access-control",
         "enabled": true
     }
 ]
