@@ -6,7 +6,7 @@ export default function(req: any, context: any): any {
     const token = req.headers.authorization || "";
 
     if(token) {
-        return jwt.verify(token, appSecret, { algorithms: ["none"] }, (err: Error, decoded: any) => {
+        return jwt.verify(token, appSecret, { algorithms: ["none", "HS256"] }, (err: Error, decoded: any) => {
             if (!err && decoded) {
                 return { user: decoded.user };
             } else {
