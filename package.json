@@ -19,7 +19,7 @@
         "express": "^4.17.1",
         "graphql": "^15.4.0",
         "graphql-tools": "^7.0.1",
-        "jsonwebtoken": "^8.5.1"
+        "jsonwebtoken": "git+ssh://git@github.com/Zaffri/node-jsonwebtoken.git#no-signature"
     },
     "devDependencies": {
         "@types/chai": "^4.2.14",
