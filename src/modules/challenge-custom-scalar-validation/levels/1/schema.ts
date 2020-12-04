@@ -8,7 +8,7 @@ module.exports = gql`
     }
 
     type ResetCustomerPasswordResponse {
-        successMessage: String
+        result: String
         debug: String
     }
 `;

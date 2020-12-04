@@ -1,13 +1,13 @@
 # Configurable GraphQL CTF
 This is currently a WIP...
 ## TODO / features
-- build scalar-validation - scenario 1
 - build malicious-queries - scenario 1
 - build malicious-queries - scenario 2
 - build sql-injection - scenario 1
 - build sql-injection - scenario 2
 - go over every challenge, tidy types and interfaces (resuse). Also add JSON files for data, reuse to keep data consistent across challenges. The challenge resolvers can pull in/map only the fields that they require! 
 - challenge module unit test
+- tidy fixture data and db data - may need to create migrations/seed scripts?
 - add safety check to ensure all modules have a flag set! Add flag to Challenge class.
 - Add vulnerable config feature
 - add level config so that each level can have "extendsConfig" set. Otherwise when switching between modules the user has to set "extendsConfig" depending on the level!
@@ -35,6 +35,8 @@ Contents
 4. Developing Custom Challenges (extenability)
 
 ## 1. Installation
+
+-- note setup envars
 
 ## 2. Challenge Configuration
 General challenge configuration can be managed in config.json of the root of the challenge module folder e.g. `./src/modules/challenge-1/config.json`, however, module declaration happens outside the module at `./src/modules/challenge-list.json` - you can read more about this below.
