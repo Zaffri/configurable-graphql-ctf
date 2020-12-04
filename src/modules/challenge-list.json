@@ -9,6 +9,10 @@
     },
     {
         "name": "challenge-custom-scalar-validation",
+        "enabled": false
+    },
+    {
+        "name": "challenge-malicious-queries",
         "enabled": true
     }
 ]

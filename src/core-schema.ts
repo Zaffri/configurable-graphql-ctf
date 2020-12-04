@@ -12,4 +12,9 @@ export default gql`
     type User {
         userId: Int
     }
+
+    type Product {
+        productId: Int!
+        name: String!
+    }
 `;
