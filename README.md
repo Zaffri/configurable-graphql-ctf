@@ -1,7 +1,6 @@
 # Configurable GraphQL CTF
 This is currently a WIP...
 ## TODO / features
-- build broken-auth - scenario 2 - got working, however I've commented out "none" algorithm check out directly in node_module. Will need to find another version that allows "none" or fork and create my own version. Will comeback to this - the check/message thats causing issues is "jwt signature is required". Look at updating this to allow users to define their own algorithm, i.e. user should be able to change algorithm to none, modify payload to retrieve flag.
 - build scalar-validation - scenario 1
 - build malicious-queries - scenario 1
 - build malicious-queries - scenario 2
