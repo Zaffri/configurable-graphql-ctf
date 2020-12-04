@@ -10,7 +10,6 @@ type AuthenticateUserArguments = {
 }
 
 const isUserAdmin = (context: any): boolean => {
-    console.log("context: " + JSON.stringify(context));
     if(context && context.user && context.user.isAdmin) {
         return true;
     } else {
@@ -25,10 +24,8 @@ export default {
                 return data.documents.filter((document) => !document.private);
             } else {
                 if(isUserAdmin(context)) {
-                    console.log("IS ADMIN!");
                     return data.documents.filter((document) => document.private);
                 } else {
-                    console.log("NOT ADMIN!");
                     throw new Error("Only logged in staff members can access private documents");
                 }
             }
@@ -45,10 +42,9 @@ export default {
             const email = args.email;
             const password = args.password;
 
-            // Hard coded for testing purpose - add in db later
             if(email === "steven@graphql.ctf" && password === "password") {
                 const tokenPayload = { user: { email: args.email, isAdmin: false } };
-                const token = jwt.sign(tokenPayload, appSecret, { algorithm: "none" });
+                const token = jwt.sign(tokenPayload, appSecret, { algorithm: "HS256" });
 
                 return {
                     user: {
