@@ -1,6 +1,14 @@
 import { gql } from "apollo-server-express";
 
 module.exports = gql`
-    extend type Query {
+    scalar JSONString
+
+    extend type Mutation {
+        resetCustomerPassword(payload: JSONString!): ResetCustomerPasswordResponse
+    }
+
+    type ResetCustomerPasswordResponse {
+        successMessage: String
+        debug: String
     }
 `;
