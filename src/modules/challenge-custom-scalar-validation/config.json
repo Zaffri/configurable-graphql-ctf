@@ -1,0 +1,8 @@
+{
+    "name": "challenge-custom-scalar-validation",
+    "description": "The user must exploit inappropriate custom scalar validation in order to retrieve the flag.",
+    "level": "1",
+    "vulnerable": true,
+    "flag": "FLAG_LyeM43n12fEj4Oid",
+    "extendsContext": false
+}

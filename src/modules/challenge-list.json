@@ -5,6 +5,10 @@
     },
     {
         "name": "challenge-misconfigured-access-control",
+        "enabled": false
+    },
+    {
+        "name": "challenge-custom-scalar-validation",
         "enabled": true
     }
 ]
