@@ -3,6 +3,5 @@
     "description": "The user must exploit broken authentication in order to retrieve the flag.",
     "level": "2",
     "vulnerable": true,
-    "flag": "FLAG_xiwrLV9Xirij7vlP",
-    "extendsContext": true
+    "flag": "FLAG_xiwrLV9Xirij7vlP"
 }

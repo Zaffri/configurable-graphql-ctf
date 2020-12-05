@@ -10,7 +10,7 @@ This is currently a WIP...
 - tidy fixture data and db data - may need to create migrations/seed scripts?
 - add safety check to ensure all modules have a flag set! Add flag to Challenge class.
 - Add vulnerable config feature
-- add level config so that each level can have "extendsConfig" set. Otherwise when switching between modules the user has to set "extendsConfig" depending on the level!
+- move flag to level config file, rather than main challenge module folder
 - replace fs in configuration class to use dynamic typescript import, just like schemabuilder
 - make schema.ts optional? some challenges may not require schema additons if they share core schema
 - add check for duplicate resolvers?at present user does not get error
