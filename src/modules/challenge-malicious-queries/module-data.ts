@@ -3,22 +3,94 @@ export default {
         {
             productId: 1,
             name: "Product 1",
-            cost: 200
+            cost: 200,
+            categories: [
+                {
+                    categoryId: 1,
+                    name: "Cat. 1",
+                    products: [
+                        {
+                            productId: 1,
+                            name: "Product 1",
+                            cost: 200
+                        },
+                        {
+                            productId: 2,
+                            name: "Product 2",
+                            cost: 100
+                        }
+                    ]
+                }
+            ]
         },
         {
             productId: 2,
             name: "Product 2",
-            cost: 100
+            cost: 100,
+            categories: [
+                {
+                    categoryId: 1,
+                    name: "Cat. 1",
+                    products: [
+                        {
+                            productId: 1,
+                            name: "Product 1",
+                            cost: 200
+                        },
+                        {
+                            productId: 2,
+                            name: "Product 2",
+                            cost: 100
+                        }
+                    ]
+                }
+            ]
         },
         {
             productId: 3,
             name: "Product 3",
-            cost: 100
+            cost: 100,
+            categories: [
+                {
+                    categoryId: 2,
+                    name: "Cat. 2",
+                    products: [
+                        {
+                            productId: 3,
+                            name: "Product 3",
+                            cost: 100
+                        },
+                        {
+                            productId: 4,
+                            name: "Product 4",
+                            cost: 100
+                        }
+                    ]
+                }
+            ]
         },
         {
             productId: 4,
             name: "Product 4",
-            cost: 100
+            cost: 100,
+            categories: [
+                {
+                    categoryId: 2,
+                    name: "Cat. 2",
+                    products: [
+                        {
+                            productId: 3,
+                            name: "Product 3",
+                            cost: 100
+                        },
+                        {
+                            productId: 4,
+                            name: "Product 4",
+                            cost: 100
+                        }
+                    ]
+                }
+            ]
         },
         {
             productId: 5,

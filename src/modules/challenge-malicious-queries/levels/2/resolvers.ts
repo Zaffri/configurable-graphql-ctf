@@ -16,7 +16,9 @@ interface Product {
 
 export default {
     Query: {
-        getProducts: (obj: undefined, args: GetProductsArguments): Product[] => {
+        getProducts: (obj: undefined, args: GetProductsArguments, context, info): Product[] => {
+            console.log(context);
+            console.log(info);
             const pageSize = args.pageSize;
             const page = args.page;
             const allProducts = data.products;
@@ -28,7 +30,7 @@ export default {
                 const endPoint = (startingPoint + pageSize);
                 return allProducts.slice(startingPoint, endPoint);
             } else {
-                throw new Error(`Congrats! ${config.flag}`);
+                throw new Error(`There is a max page size of ${pageSizeLimit}`);
             }
         }
     }

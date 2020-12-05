@@ -1,7 +1,7 @@
 {
     "name": "challenge-malicious-queries",
     "description": "The user must exploit lack of protection over malicious queries in order to retrieve the flag.",
-    "level": "1",
+    "level": "2",
     "vulnerable": true,
     "flag": "FLAG_cGwd9qBNaw7yCWJ8",
     "extendsContext": false
