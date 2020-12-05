@@ -5,10 +5,10 @@
     },
     {
         "name": "challenge-2",
-        "enabled": true
+        "enabled": false
     },
     {
         "name": "challenge-3",
-        "enabled": false
+        "enabled": true
     }
 ]

@@ -1,7 +1,7 @@
 [
     {
         "name": "challenge-broken-authentication",
-        "enabled": false
+        "enabled": true
     },
     {
         "name": "challenge-misconfigured-access-control",
@@ -9,6 +9,6 @@
     },
     {
         "name": "challenge-custom-scalar-validation",
-        "enabled": true
+        "enabled": false
     }
 ]

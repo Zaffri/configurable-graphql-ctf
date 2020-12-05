@@ -35,7 +35,7 @@ describe("Configuration.ts", () => {
     });
     describe("When configuration has extended context", () => {
         it("GraphQL context should be modified by module's context callbacks", async () => {
-            const expected = ["challenge-1"];
+            const expected = ["challenge-3"];
 
             const configuration = new Configuration(ChallengeListContextExtendedFixtures);
             const isContextExtended = configuration.isContextExtended();

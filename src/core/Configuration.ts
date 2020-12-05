@@ -18,7 +18,7 @@ export default class Configuration {
         challengeList.forEach((challengeListItem: ChallengeListItem) => {
             if(challengeListItem.enabled) {
                 const config: ChallengeConfiguration = this.getChallengeConfiguration(challengeListItem.name);
-                const challenge = new Challenge(config.name, config.description, config.level, config.vulnerable, config.extendsContext);
+                const challenge = new Challenge(config.name, config.description, config.level, config.vulnerable);
                 enabledChallenges.push(challenge);
             }
         });
