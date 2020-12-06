@@ -1,4 +1,5 @@
 {
     "description": "User must exploit gaps in authentication guards to fetch flag.",
-    "extendsContext": false
+    "extendsContext": false,
+    "extendsValidationRules": false
 }

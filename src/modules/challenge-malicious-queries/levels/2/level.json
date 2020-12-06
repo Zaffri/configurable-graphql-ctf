@@ -1,4 +1,5 @@
 {
     "description": "User must build expensive nested query to get flag.",
-    "extendsContext": false
+    "extendsContext": false,
+    "extendsValidationRules": true
 }

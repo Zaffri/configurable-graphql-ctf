@@ -1,4 +1,5 @@
 {
     "description": "User must exploit and modify a JWT payload in order to escalate privilege.",
-    "extendsContext": true
+    "extendsContext": true,
+    "extendsValidationRules": false
 }

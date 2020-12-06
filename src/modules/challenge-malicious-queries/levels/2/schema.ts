@@ -10,7 +10,7 @@ module.exports = gql`
     }
 
     type Category {
-        categroryId: Int!,
+        categoryId: Int!,
         name: String,
         products: [Product]
     }

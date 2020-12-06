@@ -1,4 +1,5 @@
 {
     "description": "....",
-    "extendsContext": false
+    "extendsContext": false,
+    "extendsValidationRules": false
 }

@@ -49,6 +49,7 @@ export default {
                 const categoryData = data.categories.find(cat => cat.categoryId === categoryId);
                 categoriesFormatted.push(categoryData);
             });
+            console.log(categoriesFormatted);
             return categoriesFormatted;
         }
     },
