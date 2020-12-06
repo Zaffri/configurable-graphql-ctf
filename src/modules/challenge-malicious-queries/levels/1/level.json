@@ -1,0 +1,4 @@
+{
+    "description": "User must exploit poorly implemented pagination to build expensive query",
+    "extendsContext": false
+}

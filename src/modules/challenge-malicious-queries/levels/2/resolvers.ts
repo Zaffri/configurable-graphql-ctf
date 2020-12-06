@@ -11,14 +11,19 @@ interface GetProductsArguments {
 interface Product {
     productId: number,
     name: string,
-    cost: number
+    cost: number,
+    categories: Category[] | number[]
+}
+
+interface Category {
+    categoryId: number,
+    name: string,
+    products: number[] | Product[]
 }
 
 export default {
     Query: {
-        getProducts: (obj: undefined, args: GetProductsArguments, context, info): Product[] => {
-            console.log(context);
-            console.log(info);
+        getProducts: (obj: undefined, args: GetProductsArguments): Product[] => {
             const pageSize = args.pageSize;
             const page = args.page;
             const allProducts = data.products;
@@ -28,10 +33,36 @@ export default {
             if(pageSize <= pageSizeLimit) {
                 const startingPoint = (page * pageSize) - pageSize;
                 const endPoint = (startingPoint + pageSize);
-                return allProducts.slice(startingPoint, endPoint);
+                const pageProducts = allProducts.slice(startingPoint, endPoint);
+                return pageProducts;
             } else {
                 throw new Error(`There is a max page size of ${pageSizeLimit}`);
             }
         }
+    },
+    Product: {
+        categories: (obj: Product): Category[] => {
+            const categoryIds = obj.categories;
+            const categoriesFormatted: Category[] = [];
+
+            categoryIds.forEach((categoryId: number) => {
+                const categoryData = data.categories.find(cat => cat.categoryId === categoryId);
+                categoriesFormatted.push(categoryData);
+            });
+            return categoriesFormatted;
+        }
+    },
+
+    Category: {
+        products: (obj: Category): Product[] => {
+            const productIds = obj.products;
+            const productsFormatted: Product[] = [];
+
+            productIds.forEach((productId: number) => {
+                const productData = data.products.find(p => p.productId === productId);
+                productsFormatted.push(productData);
+            });
+            return productsFormatted;
+        } 
     }
 };
