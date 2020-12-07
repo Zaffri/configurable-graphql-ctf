@@ -13,9 +13,12 @@ import ChallengeList from "./modules/challenge-list.json";
 import Configuration from "./core/Configuration";
 import Context from "./core/Context";
 import SchemaBuilder from "./core/SchemaBuilder";
+import ValidationRules from "./core/ValidationRules";
 
 const configuration = new Configuration(ChallengeList);
 const enabledChallenges = configuration.getEnabledChallenges();
+const modulesExtendingContext = configuration.getModulesThatExtendContext();
+const modulesExtendingValidationRules = configuration.getModulesThatExtendValidationRules();
 
 const init = async() => {
     const schemaBuilder = new SchemaBuilder(enabledChallenges);
@@ -28,13 +31,17 @@ const init = async() => {
         schema: makeExecutableSchema(schema)
     };
 
-    if(configuration.isContextExtended()) {
-        const context = new Context(configuration.getModulesThatExtendContext());
+    if(modulesExtendingContext.length) {
+        const context = new Context(modulesExtendingContext);
         serverConfig.context = async ({ req }) => await context.getContext(req);
     }
 
-    const server: ApolloServer = new ApolloServer(serverConfig);
+    if(modulesExtendingValidationRules.length) {
+        const validationRules = new ValidationRules(modulesExtendingValidationRules);
+        serverConfig.validationRules = await validationRules.getValidationRules();
+    }
 
+    const server: ApolloServer = new ApolloServer(serverConfig);
     const app: Application = Express();
 
     server.applyMiddleware({

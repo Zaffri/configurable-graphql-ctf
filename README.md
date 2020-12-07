@@ -1,8 +1,6 @@
 # Configurable GraphQL CTF
 This is currently a WIP...
 ## TODO / features
-- build malicious-queries - scenario 1
-- build malicious-queries - scenario 2
 - build sql-injection - scenario 1
 - build sql-injection - scenario 2
 - go over every challenge, tidy types and interfaces (resuse). Also add JSON files for data, reuse to keep data consistent across challenges. The challenge resolvers can pull in/map only the fields that they require! 
@@ -91,9 +89,11 @@ The system is intended to be extensible with the idea that other developers shou
 
 ### 4.4 Creating the resolvers
 
-### 4.5 Extending the context
+### 4.5 Extending the GraphQL context
 
-### 4.6 Design Consideration: Shared Types
+### 4.6 Extending the validation rules (GraphQL Express)
+
+### 4.7 Design Consideration: Shared Types
 Some challenge modules may share types e.g. module 1 and 2 both may depend on a type "User". GraphQL will not allow a type to be defined twice, therefore modules should simply extend the type. This is done by defining the type outside the challenge module in a "core schema" (shared), then each module uses the "extend" keyword to add their relevant fields. 
 
 One issue is that when defining a type in the core schema it must not be empty as GraphQL will throw an error when an empty type is supplied. This is tackled by providing default/generic fields which will be present at all times. These can be used by other modules or not used and act as dummy fields to throw the user off.
@@ -102,16 +102,16 @@ Since these default fields are defined outside the modules, they cannot be confi
 
 Note: types will not need to be shared across challenge levels e.g. if "challenge-1" has difficulty levels "1" and "2", since only one can be active at once present at once then the type does not need to exist in the core schema.
 
-### 4.7 Design Consideration: Shared Fields
+### 4.8 Design Consideration: Shared Fields
 Similar to types, fields cannot be defined more than once as GraphQL will also throw an error. These can also be defined in the core schema along with the shared types. As mentioned above, they will be present at all times and cannot be turned off using configuration.
 
 Like shared types (4.5), shared fields do not need to be shared across a challenges difficulties, unless the difficulty levels are from different challenges.
 
-### 4.8 Design Consideration: Queries and Mutations
+### 4.9 Design Consideration: Queries and Mutations
 Resolvers for queries and mutations sit on a challenge module level, therefore the application has to "stitch" them together before building the complete API schema. The way that the stitching is done is that any duplicate resolver names will be overwritten by the last one that is found. Usually GraphQL would throw an error when a resolver is defined twice but the stitching process will only allow one. This means you may not see any errors if you have duplicates, therefore it is important to keep an eye out for this. If a resolver is not being executed then it may be because it is overwritten by a duplicate. In the future I may add a check for unique resolvers.
 
-### 4.8 Design Consideration: Extending GraphQL context
+### 4.10 Design Consideration: Extending GraphQL context
 Multiple challenge modules can extend GraphQL context, although you have to beware of context conflicts e.g. one challenge may add a user object to context and another may also add a user object. At present there is no logic to merge these values, instead they will be overwritted. This may be a feature in future to allow context changes to be merged to avoid overwrites.
 
-### 4.9 Design Consideration: Shared Dependencies
+### 4.11 Design Consideration: Shared Dependencies
 ...

@@ -43,11 +43,11 @@ export default class Configuration {
         return this.enabledChallenges;
     }
 
-    public isContextExtended(): boolean {
-        return this.enabledChallenges.some(challenge => challenge.getExtendsContext());
-    }
-
     public getModulesThatExtendContext(): Challenge[] {
         return this.enabledChallenges.filter(challenge => challenge.getExtendsContext());
+    }
+
+    public getModulesThatExtendValidationRules(): Challenge[] {
+        return this.enabledChallenges.filter(challenge => challenge.getExtendsValidationRules());
     }
 }

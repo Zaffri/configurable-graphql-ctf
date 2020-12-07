@@ -41,4 +41,8 @@ export default class Challenge {
     public getExtendsContext(): boolean {
         return this.level.getExtendsContext();
     }
+
+    public getExtendsValidationRules(): boolean {
+        return this.level.getExtendsValidationRules();
+    }
 }

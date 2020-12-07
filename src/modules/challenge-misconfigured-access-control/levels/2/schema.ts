@@ -15,9 +15,7 @@ module.exports = gql`
         isAdmin: Boolean!
     }
 
-    type Product {
-        productId: Int!
-        name: String!
+    extend type Product {
         cost: Float!
     }
 

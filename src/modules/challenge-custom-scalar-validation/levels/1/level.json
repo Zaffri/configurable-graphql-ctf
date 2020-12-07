@@ -1,4 +1,5 @@
 {
     "description": "User must exploit lack of custom scalar validation & NoSQLi vulnerability to get flag.",
-    "extendsContext": false
+    "extendsContext": false,
+    "extendsValidationRules": false
 }

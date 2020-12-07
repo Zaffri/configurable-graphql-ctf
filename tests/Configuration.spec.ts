@@ -38,7 +38,8 @@ describe("Configuration.ts", () => {
             const expected = ["challenge-3"];
 
             const configuration = new Configuration(ChallengeListContextExtendedFixtures);
-            const isContextExtended = configuration.isContextExtended();
+            const modules = configuration.getModulesThatExtendContext();
+            const isContextExtended = modules.length > 0;
             const modulesThatExtendContext: Challenge[] = configuration.getModulesThatExtendContext();
 
             const result = modulesThatExtendContext.every((challenge) => expected.includes(challenge.getName()));
@@ -49,12 +50,23 @@ describe("Configuration.ts", () => {
     describe("When configuration does not extend context", () => {
         it("GraphQL context is not modified", async () => {
             const configuration = new Configuration(ChallengeListNoContextExtendedFixtures);
-            const isContextExtended = configuration.isContextExtended();
+            const modules = configuration.getModulesThatExtendContext();
+            const isContextExtended = modules.length > 0;
             const modulesThatExtendContext: Challenge[] = configuration.getModulesThatExtendContext();
 
             const result = modulesThatExtendContext.length === 0;
             expect(isContextExtended).to.equal(false);
             expect(result).to.equal(true);
+        });
+    });
+    describe("When configuration has extended validation rules", () => {
+        xit("GraphQL validation rules should be present", async () => {
+            console.log("pending");
+        });
+    });
+    describe("When configuration does not have extended validation rules", () => {
+        xit("GraphQL validation rules should not be be present", async () => {
+            console.log("pending");
         });
     });
 });
