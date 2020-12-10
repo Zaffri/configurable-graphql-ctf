@@ -11,6 +11,7 @@ export default gql`
 
     type User {
         userId: Int
+        email: String
     }
 
     type Product {

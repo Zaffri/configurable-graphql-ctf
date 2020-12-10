@@ -10,7 +10,6 @@ module.exports = gql`
     }
 
     extend type User {
-        email: String!
         apiToken: String!
         isAdmin: Boolean!
     }

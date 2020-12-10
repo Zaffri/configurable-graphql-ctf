@@ -10,10 +10,6 @@ module.exports = gql`
         authenticateUser(email: String!, password: String!): AuthenticationResponse
     }
 
-    extend type User {
-        email: String
-    }
-
     type Document {
         name: String!
         fileContents: String!

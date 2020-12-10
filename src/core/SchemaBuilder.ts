@@ -46,10 +46,10 @@ export default class SchemaBuilder {
     private stitchResolvers(moduleResolvers: Record<string, unknown>[]) {
         if(!moduleResolvers.length) return {};
 
-        const combinedResolvers = { Query: {} };
+        let combinedResolvers: {[key: string]: any} = {};
 
         moduleResolvers.forEach((res) => {
-            const resolver = res.default;
+            const resolver: {[key: string]: any} = res.default;
             const resolverKeys: string[] = Object.keys(resolver);
             
             resolverKeys.forEach(resolverKey => {
