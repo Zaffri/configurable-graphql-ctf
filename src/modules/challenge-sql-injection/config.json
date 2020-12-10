@@ -1,0 +1,7 @@
+{
+    "name": "challenge-sql-injection",
+    "description": "The user must perform SQL injection to gain the flag.",
+    "level": "1",
+    "vulnerable": true,
+    "flag": "FLAG_LyeM43n12fEj4Oid"
+}
