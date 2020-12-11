@@ -3,7 +3,7 @@ import config from "../../config.json";
 
 type ProductArguments = {
     productId: number,
-    cost: number,
+    price: number,
     apiToken: string
 };
 
@@ -23,7 +23,7 @@ interface User {
 interface Product {
     productId: number,
     name: string,
-    cost: number
+    price: number
 }
 
 interface UpdateProductResponse {
@@ -64,7 +64,7 @@ export default {
                     product: {
                         productId: args.productId,
                         name: "Product name",
-                        cost: args.cost
+                        price: args.price
                     },
                     successMessage: successMessage
                 };

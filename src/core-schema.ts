@@ -17,5 +17,6 @@ export default gql`
     type Product {
         productId: Int!
         name: String!
+        price: Float!
     }
 `;
