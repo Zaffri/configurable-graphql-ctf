@@ -1,19 +1,19 @@
 [
     {
         "name": "challenge-broken-authentication",
-        "enabled": false
+        "enabled": true
     },
     {
         "name": "challenge-misconfigured-access-control",
-        "enabled": false
+        "enabled": true
     },
     {
         "name": "challenge-custom-scalar-validation",
-        "enabled": false
+        "enabled": true
     },
     {
         "name": "challenge-malicious-queries",
-        "enabled": false
+        "enabled": true
     },
     {
         "name": "challenge-sql-injection",

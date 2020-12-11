@@ -13,8 +13,7 @@ module.exports = gql`
         fileContents: String!
     }
 
-    type Category {
-        name: String!
+    extend type Category {
         private: Boolean!
         description: String!
     }

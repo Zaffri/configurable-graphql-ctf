@@ -19,4 +19,8 @@ export default gql`
         name: String!
         price: Float!
     }
+
+    type Category {
+        name: String!
+    }
 `;
