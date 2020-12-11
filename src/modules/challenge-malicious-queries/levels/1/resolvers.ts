@@ -11,7 +11,7 @@ interface GetProductsArguments {
 interface Product {
     productId: number,
     name: string,
-    cost: number
+    price: number
 }
 
 export default {

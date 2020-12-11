@@ -21,7 +21,9 @@
         "graphql-depth-limit": "git+ssh://git@github.com/Zaffri/graphql-depth-limit.git",
         "graphql-tools": "^7.0.1",
         "jsonwebtoken": "git+ssh://git@github.com/Zaffri/node-jsonwebtoken.git#no-signature",
-        "mongodb": "^3.6.3"
+        "knex": "^0.21.12",
+        "mongodb": "^3.6.3",
+        "mysql2": "^2.2.5"
     },
     "devDependencies": {
         "@types/chai": "^4.2.14",

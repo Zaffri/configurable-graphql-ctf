@@ -1,0 +1,5 @@
+{
+    "description": "User must run SQL injection to login as admin and retrieve the flag.",
+    "extendsContext": false,
+    "extendsValidationRules": false
+}

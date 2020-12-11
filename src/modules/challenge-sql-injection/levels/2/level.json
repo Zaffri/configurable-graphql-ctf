@@ -1,0 +1,5 @@
+{
+    "description": "User must run SQL injection to retrieve payment table to get flag.",
+    "extendsContext": false,
+    "extendsValidationRules": false
+}

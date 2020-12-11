@@ -1,17 +1,16 @@
 # Configurable GraphQL CTF
 This is currently a WIP...
 ## TODO / features
-- build sql-injection - scenario 1
-- build sql-injection - scenario 2
-- go over every challenge, tidy types and interfaces (resuse). Also add JSON files for data, reuse to keep data consistent across challenges. The challenge resolvers can pull in/map only the fields that they require! 
+- go over every challenge, tidy types and interfaces (resuse) - e.g. reusable User interface for 2 authenticate mutations. Also add JSON files for data, reuse to keep data consistent across challenges. The challenge resolvers can pull in/map only the fields that they require! 
 - challenge module unit test
 - tidy fixture data and db data - may need to create migrations/seed scripts?
 - add safety check to ensure all modules have a flag set! Add flag to Challenge class.
 - Add vulnerable config feature
 - move flag to level config file, rather than main challenge module folder
 - replace fs in configuration class to use dynamic typescript import, just like schemabuilder
-- make schema.ts optional? some challenges may not require schema additons if they share core schema
+- make schema.ts optional? some challenges may not require schema additions if they share core schema
 - add check for duplicate resolvers?at present user does not get error
+- add cli script to create empty/shell challenge module based on arguments passed
 
 ---
 
@@ -30,11 +29,14 @@ Contents
 1. Installation
 2. Challenge Configuration
 3. Running your own CTF
-4. Developing Custom Challenges (extenability)
+4. Developing Custom Challenges (extensibility)
 
 ## 1. Installation
 
--- note setup envars
+-- install dependencies
+-- compile tsc
+-- migrations/seeds?
+-- setup envars
 
 ## 2. Challenge Configuration
 General challenge configuration can be managed in config.json of the root of the challenge module folder e.g. `./src/modules/challenge-1/config.json`, however, module declaration happens outside the module at `./src/modules/challenge-list.json` - you can read more about this below.
@@ -44,7 +46,7 @@ All challenges modules are declared in the following file `./src/modules/challen
 
 The reason this is not declared on a module level is because its easier for the API to read from one file where modules are declared rather than looping through all module folders and reading individual module config files.
 
-### Difficulty Levels Option
+### Difficulty Levels Option (needs REVISION)
 The difficulty can be managed from the modules configuration file at `./src/modules/${challenge-name}/config.json`. The setting is called "level" and it is a string. Specifically the string must be equal to the name of the difficulty level folder inside the modules "levels" folder. For example consider the following module's folder structure.
 
 ```

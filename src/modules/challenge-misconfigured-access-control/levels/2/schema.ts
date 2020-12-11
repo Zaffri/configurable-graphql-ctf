@@ -6,16 +6,12 @@ module.exports = gql`
     }
 
     extend type Mutation {
-        updateProduct(productId: Int!, cost: Float!, apiToken: String): UpdateProductResponse
+        updateProduct(productId: Int!, price: Float!, apiToken: String): UpdateProductResponse
     }
 
     extend type User {
         apiToken: String!
         isAdmin: Boolean!
-    }
-
-    extend type Product {
-        cost: Float!
     }
 
     type UpdateProductResponse {
