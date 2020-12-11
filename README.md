@@ -1,7 +1,6 @@
 # Configurable GraphQL CTF
 This is currently a WIP...
 ## TODO / features
-- sqli level/scenario 2 - in db put placeholder e.g. FLAG and in code replace placeholder with value from config so that flag is configurable.
 - go over every challenge, tidy types and interfaces (resuse) - e.g. reusable User interface for 2 authenticate mutations. Also add JSON files for data, reuse to keep data consistent across challenges. The challenge resolvers can pull in/map only the fields that they require! 
 - challenge module unit test
 - tidy fixture data and db data - may need to create migrations/seed scripts?
