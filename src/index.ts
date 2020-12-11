@@ -6,8 +6,8 @@ import Helpers from "./core/Helpers";
 dotenv.config();
 Helpers.setBaseProjectPath(__dirname);
 
-import coreResolvers from "./core-resolvers.js";
-import coreSchema from "./core-schema.js";
+import sharedResolvers from "./shared/shared-resolvers.js";
+import sharedSchema from "./shared/shared-schema.js";
 
 import ChallengeList from "./modules/challenge-list.json";
 import Configuration from "./core/Configuration";
@@ -22,7 +22,7 @@ const modulesExtendingValidationRules = configuration.getModulesThatExtendValida
 
 const init = async() => {
     const schemaBuilder = new SchemaBuilder(enabledChallenges);
-    schemaBuilder.setCoreSchemaAndResolvers(coreSchema, coreResolvers);
+    schemaBuilder.setSharedSchemaAndResolvers(sharedSchema, sharedResolvers);
     await schemaBuilder.generateSchema();
 
     const schema: IExecutableSchemaDefinition = schemaBuilder.getSchema();

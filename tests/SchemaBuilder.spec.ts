@@ -8,11 +8,11 @@ describe("SchemaBuilder.ts", () => {
             console.log("pending test");
         });
         
-        xit("setup default core/shared schema and resolvers", () => {
+        xit("setup default shared schema and resolvers", () => {
             console.log("pending test");
         });
         
-        xit("stitch core and enabled challenges' schemas & resolvers to build one API schema based on configuration", () => {
+        xit("stitch shared and enabled challenges' schemas & resolvers to build one API schema based on configuration", () => {
             console.log("pending test");
         });
     });

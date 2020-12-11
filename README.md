@@ -4,12 +4,12 @@ This is currently a WIP...
 - go over every challenge, tidy types and interfaces (resuse) - e.g. reusable User interface for 2 authenticate mutations. Also add JSON files for data, reuse to keep data consistent across challenges. The challenge resolvers can pull in/map only the fields that they require! 
 - challenge module unit test
 - tidy fixture data and db data - may need to create migrations/seed scripts? Pull mysql db out of challenge so that it is shared between modules and each can have data in db...?
-- finalise core mutation and schema 
+- finalise shared mutation and schema 
 - add safety check to ensure all modules have a flag set! Add flag to Challenge class.
 - Add vulnerable config feature
 - move flag to level config file, rather than main challenge module folder
 - replace fs in configuration class to use dynamic typescript import, just like schemabuilder
-- make schema.ts optional? some challenges may not require schema additions if they share core schema
+- make schema.ts optional? some challenges may not require schema additions if they share shared schema
 - add check for duplicate resolvers?at present user does not get error
 - add cli script to create empty/shell challenge module based on arguments passed
 
@@ -97,16 +97,16 @@ The system is intended to be extensible with the idea that other developers shou
 ### 4.6 Extending the validation rules (GraphQL Express)
 
 ### 4.7 Design Consideration: Shared Types
-Some challenge modules may share types e.g. module 1 and 2 both may depend on a type "User". GraphQL will not allow a type to be defined twice, therefore modules should simply extend the type. This is done by defining the type outside the challenge module in a "core schema" (shared), then each module uses the "extend" keyword to add their relevant fields. 
+Some challenge modules may share types e.g. module 1 and 2 both may depend on a type "User". GraphQL will not allow a type to be defined twice, therefore modules should simply extend the type. This is done by defining the type outside the challenge module in a "shared schema", then each module uses the "extend" keyword to add their relevant fields. 
 
-One issue is that when defining a type in the core schema it must not be empty as GraphQL will throw an error when an empty type is supplied. This is tackled by providing default/generic fields which will be present at all times. These can be used by other modules or not used and act as dummy fields to throw the user off.
+One issue is that when defining a type in the shared schema it must not be empty as GraphQL will throw an error when an empty type is supplied. This is tackled by providing default/generic fields which will be present at all times. These can be used by other modules or not used and act as dummy fields to throw the user off.
 
 Since these default fields are defined outside the modules, they cannot be configured so they are present at all times - to ensure shared types are never empty.
 
-Note: types will not need to be shared across challenge levels e.g. if "challenge-1" has difficulty levels "1" and "2", since only one can be active at once present at once then the type does not need to exist in the core schema.
+Note: types will not need to be shared across challenge levels e.g. if "challenge-1" has difficulty levels "1" and "2", since only one can be active at once present at once then the type does not need to exist in the shared schema.
 
 ### 4.8 Design Consideration: Shared Fields
-Similar to types, fields cannot be defined more than once as GraphQL will also throw an error. These can also be defined in the core schema along with the shared types. As mentioned above, they will be present at all times and cannot be turned off using configuration.
+Similar to types, fields cannot be defined more than once as GraphQL will also throw an error. These can also be defined in the shared schema along with the shared types. As mentioned above, they will be present at all times and cannot be turned off using configuration.
 
 Like shared types (4.5), shared fields do not need to be shared across a challenges difficulties, unless the difficulty levels are from different challenges.
 
