@@ -14,6 +14,12 @@ interface Product {
     description?: string,
     price?: number
 }
+
+const replaceFlagPlaceholder = (val) => {
+    if(typeof(val) !== "string") return val;
+    return val.replace("FLAG", config.flag);  
+};
+
 export default {
     Query: {
         getProductsByCategory: async (obj: undefined, args: GetProductsByCategoryArguments): Promise<Product[]> => {
@@ -37,8 +43,8 @@ export default {
                         return {
                             productId: product.product_id,
                             categoryId: product.category_id,
-                            name: product.name,
-                            description: product.description,
+                            name: replaceFlagPlaceholder(product.name),
+                            description: replaceFlagPlaceholder(product.description),
                             price: product.price
                         };
                     });
