@@ -3,7 +3,8 @@ This is currently a WIP...
 ## TODO / features
 - go over every challenge, tidy types and interfaces (resuse) - e.g. reusable User interface for 2 authenticate mutations. Also add JSON files for data, reuse to keep data consistent across challenges. The challenge resolvers can pull in/map only the fields that they require! 
 - challenge module unit test
-- tidy fixture data and db data - may need to create migrations/seed scripts?
+- tidy fixture data and db data - may need to create migrations/seed scripts? Pull mysql db out of challenge so that it is shared between modules and each can have data in db...?
+- finalise core mutation and schema 
 - add safety check to ensure all modules have a flag set! Add flag to Challenge class.
 - Add vulnerable config feature
 - move flag to level config file, rather than main challenge module folder

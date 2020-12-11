@@ -46,7 +46,7 @@ export default class SchemaBuilder {
     private stitchResolvers(moduleResolvers: Record<string, unknown>[]) {
         if(!moduleResolvers.length) return {};
 
-        let combinedResolvers: {[key: string]: any} = {};
+        const combinedResolvers: {[key: string]: any} = {};
 
         moduleResolvers.forEach((res) => {
             const resolver: {[key: string]: any} = res.default;
@@ -59,7 +59,6 @@ export default class SchemaBuilder {
                     const mergedResolvers = { ...combinedResolvers[resolverKey], ...resolver[resolverKey] };
                     combinedResolvers[resolverKey] = mergedResolvers;
                 } else {
-                    console.log(resolverKey + " not included");
                     combinedResolvers[resolverKey] = resolver[resolverKey];
                 }
             });

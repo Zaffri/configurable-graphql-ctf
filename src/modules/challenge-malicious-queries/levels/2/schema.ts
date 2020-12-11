@@ -9,9 +9,8 @@ module.exports = gql`
         categories: [Category]
     }
 
-    type Category {
+    extend type Category {
         categoryId: Int!,
-        name: String,
         products: [Product]
     }
 `;
