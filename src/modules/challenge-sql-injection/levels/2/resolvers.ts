@@ -1,19 +1,6 @@
 import knex from "../../db";
 import config from "../../config.json";
-
-interface GetProductsByCategoryArguments {
-    categoryName: string
-}
-
-interface Product {
-    productId?: number,
-    product_id?: number,
-    categoryId?: number,
-    category_id?: number
-    name?: string,
-    description?: string,
-    price?: number
-}
+import { GetProductsByCategoryArguments, ModuleProduct as Product, ProductFromDb } from "./code/interfaces";
 
 const replaceFlagPlaceholder = (val) => {
     if(typeof(val) !== "string") return val;
@@ -25,7 +12,7 @@ export default {
         getProductsByCategory: async (obj: undefined, args: GetProductsByCategoryArguments): Promise<Product[]> => {
             try {
                 const categoryId = (args.categoryName.toLowerCase() === "laptops") ? 1 : args.categoryName; // simplify query without need for joins or extra tables
-                const products: Product[] = await knex.columns([
+                const products: ProductFromDb[] = await knex.columns([
                     "product_id",
                     "category_id",
                     "name",

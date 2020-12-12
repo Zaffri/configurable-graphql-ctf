@@ -1,27 +1,10 @@
 import knex from "../../db";
 import config from "../../config.json";
-
-interface AuthenticateAdminArguments {
-    email: string,
-    password: string
-}
-
-interface AuthenticateAdminResponse {
-    user: {
-        userId: number,
-        email: string
-    }
-    token: string
-}
-
-interface DbUser {
-    user_id: number,
-    email: string
-}
+import { AuthenticateUser, AuthenticateAdminResponse, DbUser } from "./code/interfaces";
 
 export default {
     Mutation: {
-        authenticateAdmin: async (obj: undefined, args: AuthenticateAdminArguments): Promise<AuthenticateAdminResponse> => {
+        authenticateAdmin: async (obj: undefined, args: AuthenticateUser): Promise<AuthenticateAdminResponse> => {
             try {
                 const user: DbUser = await knex.columns(["user_id", "email"])
                     .select()

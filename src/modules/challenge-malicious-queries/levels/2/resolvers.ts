@@ -1,29 +1,11 @@
-import config from "../../config.json";
 import data from "../../module-data";
+import { Category, ModuleProduct as Product } from "./code/interfaces";
 
 const pageSizeLimit = 50;
 
-interface GetProductsArguments {
-    page: number,
-    pageSize: number
-}
-
-interface Product {
-    productId: number,
-    name: string,
-    price: number,
-    categories: Category[] | number[]
-}
-
-interface Category {
-    categoryId: number,
-    name: string,
-    products: number[] | Product[]
-}
-
 export default {
     Query: {
-        getProducts: (obj: undefined, args: GetProductsArguments): Product[] => {
+        getProducts: (obj: undefined, args: { page: number, pageSize: number }): Product[] => {
             const pageSize = args.pageSize;
             const page = args.page;
             const allProducts = data.products;

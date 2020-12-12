@@ -66,7 +66,7 @@ export default class SchemaBuilder {
         this.stitchedModuleResolvers = combinedResolvers;
     }
 
-    public setCoreSchemaAndResolvers(schema: DocumentNode, resolvers: Record<string, unknown>): void {
+    public setSharedSchemaAndResolvers(schema: DocumentNode, resolvers: Record<string, unknown>): void {
         this.moduleSchemas.push(schema);
         this.moduleResolvers.push({ default: resolvers });
     }

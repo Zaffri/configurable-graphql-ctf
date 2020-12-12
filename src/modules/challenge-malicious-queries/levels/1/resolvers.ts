@@ -1,22 +1,12 @@
 import config from "../../config.json";
 import data from "../../module-data";
+import { Product } from "../../../../shared/sharedInterfaces";
 
 const pageSizeLimit = 50;
 
-interface GetProductsArguments {
-    page: number,
-    pageSize: number
-}
-
-interface Product {
-    productId: number,
-    name: string,
-    price: number
-}
-
 export default {
     Query: {
-        getProducts: (obj: undefined, args: GetProductsArguments): Product[] => {
+        getProducts: (obj: undefined, args: { page: number, pageSize: number }): Product[] => {
             const pageSize = args.pageSize;
             const page = args.page;
             const allProducts = data.products;

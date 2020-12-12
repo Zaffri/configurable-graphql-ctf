@@ -1,3 +1,5 @@
+import { User } from "./sharedInterfaces";
+
 type EmailArguments = {
     email: string
 }
@@ -6,8 +8,7 @@ type IdArguments = {
     id: number
 }
 
-interface User {
-    userId: number,
+interface ModuleUser extends User {
     email: string,
     forename: string,
     surname: string
@@ -15,7 +16,7 @@ interface User {
 
 export default {
     Query: {
-        getUserByEmail: (obj: undefined, args: EmailArguments): User => {
+        getUserByEmail: (obj: undefined, args: EmailArguments): ModuleUser => {
             return {
                 userId: 1,
                 email: args.email,
@@ -25,7 +26,7 @@ export default {
         }
     },
     Mutation: {
-        updateProfile(obj: undefined, args: IdArguments): User {
+        updateProfile(obj: undefined, args: IdArguments): ModuleUser {
             return {
                 userId: args.id,
                 email: "steven@test.com",
