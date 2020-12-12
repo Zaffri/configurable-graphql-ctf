@@ -1,11 +1,6 @@
 import knex from "../../db";
-import config from "../../config.json";
 import { GetProductsByCategoryArguments, ModuleProduct as Product, ProductFromDb } from "./code/interfaces";
-
-const replaceFlagPlaceholder = (val) => {
-    if(typeof(val) !== "string") return val;
-    return val.replace("FLAG", config.flag);  
-};
+import { replaceFlagPlaceholder } from "./code/helpers";
 
 export default {
     Query: {
