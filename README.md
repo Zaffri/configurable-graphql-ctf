@@ -105,6 +105,8 @@ Since these default fields are defined outside the modules, they cannot be confi
 
 Note: types will not need to be shared across challenge levels e.g. if "challenge-1" has difficulty levels "1" and "2", since only one can be active at once present at once then the type does not need to exist in the shared schema.
 
+Mention shared interfaces/type defs..
+
 ### 4.8 Design Consideration: Shared Fields
 Similar to types, fields cannot be defined more than once as GraphQL will also throw an error. These can also be defined in the shared schema along with the shared types. As mentioned above, they will be present at all times and cannot be turned off using configuration.
 

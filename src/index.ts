@@ -6,8 +6,8 @@ import Helpers from "./core/Helpers";
 dotenv.config();
 Helpers.setBaseProjectPath(__dirname);
 
-import sharedResolvers from "./shared/shared-resolvers.js";
-import sharedSchema from "./shared/shared-schema.js";
+import sharedResolvers from "./shared/sharedResolvers.js";
+import sharedSchema from "./shared/sharedSchema.js";
 
 import ChallengeList from "./modules/challenge-list.json";
 import Configuration from "./core/Configuration";

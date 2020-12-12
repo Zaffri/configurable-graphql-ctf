@@ -1,32 +1,14 @@
-import JSONString from "./JSONString";
+import JSONString from "./code/JSONString";
 import MongoDbConnection from "../../MongoDbConnection";
 import { MongoClient } from "mongodb";
 import config from "../../config.json";
+import { ResetCustomerPasswordArguments, ResetCustomerPasswordResponse, resetPasswordRequestResult } from "./code/interfaces";
 
 const host = process.env.MONGO_HOST || null;
 const port = parseInt(process.env.MONGO_PORT) || null;
 const dbName = process.env.MONGO_DB_NAME || null;
 const user = process.env.MONGO_DB_USER || null;
 const pass = process.env.MONGO_DB_PASS || null;
-
-interface resetPasswordRequestResult {
-    user_id: string,
-    reset_token: string
-}
-
-interface Payload {
-    resetToken: string,
-    userId: number
-}
-
-type ResetCustomerPasswordArguments = {
-    payload: Payload
-};
-
-type ResetCustomerPasswordResponse = {
-    result: string,
-    debug: string
-};
 
 const passwordReset = (client: MongoClient, userId: number, resetToken: any): Promise<resetPasswordRequestResult[]> => {
     const db = client.db("dbtest");

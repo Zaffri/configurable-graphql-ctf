@@ -1,13 +1,8 @@
 import jwt from "jsonwebtoken";
-import { Document, GetDocumentsArguments } from "../../module-types";
+import { AuthenticateUser, Document } from "./code/interfaces";
 import data from "../../module-data";
 
 const appSecret = "1234"; // pull from module location or add feature to module for confguring secrets?
-
-type AuthenticateUserArguments = {
-    email: string,
-    password: string
-}
 
 const isUserAdmin = (context: any): boolean => {
     console.log(context);
@@ -20,7 +15,7 @@ const isUserAdmin = (context: any): boolean => {
 
 export default {
     Query: {
-        getDocuments: (obj: undefined, args: GetDocumentsArguments, context: any): Document[] => {
+        getDocuments: (obj: undefined, args: { filterByPrivateDocuments: boolean }, context: any): Document[] => {
             if(!args.filterByPrivateDocuments) {
                 return data.documents.filter((document) => !document.private);
             } else {
@@ -39,7 +34,7 @@ export default {
                 email: args.email
             };
         },
-        authenticateUser: (obj: undefined, args: AuthenticateUserArguments, context: any): Record<string, unknown> => {
+        authenticateUser: (obj: undefined, args: AuthenticateUser, context: any): Record<string, unknown> => {
             const email = args.email;
             const password = args.password;
 

@@ -1,35 +1,6 @@
 import data from "../../module-data";
 import config from "../../config.json";
-
-type ProductArguments = {
-    productId: number,
-    price: number,
-    apiToken: string
-};
-
-type Order = {
-    orderId: number,
-    orderNote: string,
-    totalCost: number
-};
-
-interface User {
-    userId: number,
-    orders: Order[],
-    isAdmin: boolean,
-    apiToken: string
-}
-
-interface Product {
-    productId: number,
-    name: string,
-    price: number
-}
-
-interface UpdateProductResponse {
-    product: Product,
-    successMessage: string
-}
+import { ModuleUser as User, ProductArguments, UpdateProductResponse } from "./code/interfaces";
 
 const isAdminToken = (apiToken: string): boolean => {
     const user = data.users.find(user => user.apiToken === apiToken);
