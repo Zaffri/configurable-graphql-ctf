@@ -1,17 +1,9 @@
 import jwt from "jsonwebtoken";
-import { AuthenticateUser, Document } from "./code/interfaces";
 import data from "../../module-data";
+import { AuthenticateUser, Document } from "./code/interfaces";
+import { isUserAdmin } from "./code/helpers";
 
-const appSecret = "1234"; // pull from module location or add feature to module for confguring secrets?
-
-const isUserAdmin = (context: any): boolean => {
-    console.log(context);
-    if(context && context.user && context.user.isAdmin) {
-        return true;
-    } else {
-        return false;
-    }
-};
+const appSecret = process.env.JWT_SECRET || "damAs$=Eph9-osp=x_Q6*4o*h+vUp_a5rU+Rozo?tomEbOkedRa&lm$K0kLs";
 
 export default {
     Query: {

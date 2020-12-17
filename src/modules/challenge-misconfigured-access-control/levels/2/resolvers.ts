@@ -1,15 +1,7 @@
 import data from "../../module-data";
 import config from "../../config.json";
 import { ModuleUser as User, ProductArguments, UpdateProductResponse } from "./code/interfaces";
-
-const isAdminToken = (apiToken: string): boolean => {
-    const user = data.users.find(user => user.apiToken === apiToken);
-    if(user) {
-        return user.isAdmin;
-    } else {
-        throw new Error("API token is invalid.");
-    }
-};
+import { isAdminToken } from "./code/helpers";
 
 export default {
     Query: {
