@@ -27,7 +27,7 @@ export default class MongoDbConnection {
         if(!this.user || !this.pass) {
             connectionString = `mongodb://${this.host}:${this.port}/${this.dbName}`;
         } else {
-            connectionString = `mongodb://${this.user}:${this.pass}@${this.host}:${this.port}/${this.dbName}`;
+            connectionString = `mongodb://${this.user}:${this.pass}@${this.host}:${this.port}/${this.dbName}?authSource=admin`;
         }
         this.dbConnectionString = connectionString;
         console.log(this.dbConnectionString);

@@ -2,7 +2,7 @@ import { MongoClient } from "mongodb";
 import { resetPasswordRequestResult } from "./interfaces";
 
 const passwordReset = (client: MongoClient, userId: number, resetToken: any): Promise<resetPasswordRequestResult[]> => {
-    const db = client.db("dbtest");
+    const db = client.db();
 
     return new Promise((resolve, reject) => {
         db.collection("password_reset_requests")
