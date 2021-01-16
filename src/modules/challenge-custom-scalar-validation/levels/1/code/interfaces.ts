@@ -5,7 +5,8 @@ interface resetPasswordRequestResult {
 
 interface Payload {
     resetToken: string,
-    userId: number
+    userId: number,
+    newPassword: string
 }
 
 interface ResetCustomerPasswordArguments {
