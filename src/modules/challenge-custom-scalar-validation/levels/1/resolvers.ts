@@ -1,4 +1,4 @@
-import JSONString from "./code/JSONString";
+import ResetPasswordPayload from "./code/ResetPasswordPayload";
 import MongoDbConnection from "../../MongoDbConnection";
 import config from "../../config.json";
 import { ResetCustomerPasswordArguments, ResetCustomerPasswordResponse, resetPasswordRequestResult } from "./code/interfaces";
@@ -18,8 +18,8 @@ export default {
             const mongoConnection = new MongoDbConnection(host, port, dbName, user, pass);
             const client = await mongoConnection.getMongoClient();
 
-            if(!payload.resetToken || !payload.userId) {
-                throw new Error("A reset token and userId must be supplied!");
+            if(!payload.resetToken || !payload.userId || !payload.newPassword) {
+                throw new Error("The 'ResetPasswordPayload' requires the following fields; 'resetToken', 'userId' and 'newPassword'.");
             } else {
                 const res: resetPasswordRequestResult[] = await passwordReset(client, payload.userId, payload.resetToken);
 
@@ -40,5 +40,5 @@ export default {
 
         }
     },
-    JSONString
+    ResetPasswordPayload
 };
