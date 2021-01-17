@@ -20,24 +20,20 @@ export default {
         }
     },
     Mutation: {
-        registerNewUser: (obj: undefined, args: any, context: any): Record<string, unknown> => {
-            return {
-                userId: 1,
-                email: args.email
-            };
-        },
         authenticateUser: (obj: undefined, args: AuthenticateUser, context: any): Record<string, unknown> => {
             const email = args.email;
             const password = args.password;
 
-            if(email === "steven@graphql.ctf" && password === "password") {
+            if(email === "joe.bloggs@graphql.ctf" && password === "password") {
                 const tokenPayload = { user: { email: args.email, isAdmin: false } };
                 const token = jwt.sign(tokenPayload, appSecret, { algorithm: "HS256" });
 
                 return {
                     user: {
                         userId: 1,
-                        email: args.email
+                        email: args.email,
+                        apiToken: "13asdP_eo282m5sOe0",
+                        isAdmin: false
                     },
                     token: token
                 };

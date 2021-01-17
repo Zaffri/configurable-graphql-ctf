@@ -10,8 +10,8 @@ module.exports = gql`
     }
 
     extend type User {
-        apiToken: String!
-        isAdmin: Boolean!
+        apiToken: String
+        isAdmin: Boolean
     }
 
     type UpdateProductResponse {
