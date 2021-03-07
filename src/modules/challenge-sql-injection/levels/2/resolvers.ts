@@ -6,7 +6,7 @@ export default {
     Query: {
         getProductsByCategory: async (obj: undefined, args: GetProductsByCategoryArguments): Promise<Product[]> => {
             try {
-                const categoryId = (args.categoryName.toLowerCase() === "laptops") ? 1 : args.categoryName; // simplify query without need for joins or extra tables
+                const categoryName = args.categoryName.toLowerCase();
                 const products: ProductFromDb[] = await knex.columns([
                     "product_id",
                     "category_id",
@@ -16,7 +16,7 @@ export default {
                 ])
                     .select()
                     .from("products")
-                    .whereRaw(`category_id="${categoryId}"`);
+                    .whereRaw(`category_name="${categoryName}"`);
 
                 console.log(products);
 
