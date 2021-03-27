@@ -1,18 +1,4 @@
 # Configurable GraphQL CTF
-This is currently a WIP...
-## TODO / features
-- go over every challenge, tidy types and interfaces (resuse) - e.g. reusable User interface for 2 authenticate mutations. Also add JSON files for data, reuse to keep data consistent across challenges. The challenge resolvers can pull in/map only the fields that they require! 
-- challenge module unit test
-- tidy fixture data and db data - may need to create migrations/seed scripts? Pull mysql db out of challenge so that it is shared between modules and each can have data in db...?
-- finalise shared mutation and schema 
-- add safety check to ensure all modules have a flag set! Add flag to Challenge class.
-- Add vulnerable config feature
-- move flag to level config file, rather than main challenge module folder
-- replace fs in configuration class to use dynamic typescript import, just like schemabuilder
-- make schema.ts optional? some challenges may not require schema additions if they share shared schema
-- add check for duplicate resolvers?at present user does not get error
-- add cli script to create empty/shell challenge module based on arguments passed
-
 ---
 
 This is an intentionally vulnerable GraphQL API in a capture the flag (CTF) style format. Out of the box it comes with 5 configurable challenge modules. Configurators should be able to configure challenge difficulty as well as switch challenges on and off. All challenge modules have a common theme of Ecommerce.
@@ -75,7 +61,7 @@ This config will tell the API to load in the schema and resolvers for challenge-
 `./src/modules/challenge-1/levels/1/*`
 
 ### Vulnerable Option
-This feature is still to be added ...
+Future feature.
 
 ## 3. Running your own CTF
 This application is simply a vulnerable GraphQL target, it has no features for flag submission, user, teams or scoreboards. If you are looking for this type of functionality you could use a platform such as CTFd along side it.
@@ -120,3 +106,14 @@ Multiple challenge modules can extend GraphQL context, although you have to bewa
 
 ### 4.11 Design Consideration: Shared Dependencies
 ...
+
+## TODO / features
+- Fix pending tests
+- Tidy fixture data and db data - migrations/seeds. Db needs to be pulled out of "challenge level" and setup on API "core" level.
+- add safety check to ensure all modules have a flag set! Add flag to Challenge class.
+- Add vulnerable config feature
+- Move flag to level config file, rather than main challenge module folder
+- Replace fs in configuration class to use dynamic typescript import, just like schemabuilder
+- Make schema.ts optional? some challenges may not require schema additions if they share shared schema
+- Add check for duplicate resolvers? at present user does not get error.
+- Add cli script to create empty/shell challenge module based on arguments passed
