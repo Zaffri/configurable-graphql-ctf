@@ -32,6 +32,12 @@ Compile TypeScript
 npm run tscbuild
 ```
 
+Run locally
+
+```
+npm run dev
+```
+
 ## 2. Challenge Configuration
 General challenge configuration can be managed in config.json of the root of the challenge module folder e.g. `./src/modules/challenge-1/config.json`, however, module declaration happens outside the module at `./src/modules/challenge-list.json` - you can read more about this below.
 
