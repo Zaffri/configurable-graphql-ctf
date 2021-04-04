@@ -20,19 +20,26 @@ Contents
 
 ## 1. Installation
 
-Install dependencies
+1.1 Install dependencies
 
 ```
 npm run install
 ```
 
-Compile TypeScript
+1.2 Setup environment variables
+
+- Copy .env.example and rename to .env
+- Update .env with MySQL and MongoDB credentials (this file is not tecked by source control)
+- Leave the "CORE ENVAR" variables untouched
+- For challenges "custom scalar validation" and "SQL injection" setup the MongoDB collection and SQL database scripts from "./migrations".
+
+1.3 Compile TypeScript
 
 ```
 npm run tscbuild
 ```
 
-Run locally
+1.4 Run locally
 
 ```
 npm run dev
@@ -58,7 +65,7 @@ modules
 -------- config.json
 ```
 
-Typically the name of the levels will be made up by the developer of the module, but the conventions I used for the names of the default challenges will simply be in a number format and the higher the number then the more difficult the challenge. This convention is for simplicity. As you can see, challenge-1 has two levels called "1" and "2". This means that inside the config for challenge-1 I could set the "level" to "1" if I wanted the easiest challenge or "2" for the hardest. e.g.
+Typically the name of the levels will be made up by the developer of the module, but the conventions I used for the names of the default challenges will simply be in a number format and the higher the number then the more difficult the challenge. This convention is for simplicity. As you can see, most challenges have two levels called "1" and "2". This means that inside the config for those challenges I could set the "level" to "1" if I wanted the easiest challenge or "2" for the hardest. e.g.
 
 ```
 {
@@ -79,8 +86,10 @@ Future feature.
 ## 3. Running your own CTF
 This application is simply a vulnerable GraphQL target, it has no features for flag submission, user, teams or scoreboards. If you are looking for this type of functionality you could use a platform such as CTFd along side it.
 
-## 4. Developing Custom Challenges (extensibility)
-The system is intended to be extensible with the idea that other developers should be able to develop and plug in their own CTF challenge modules, however, due to GraphQL's nature there are some design considerations to be made aware of before doing this. Additionally, the application has been designed in such a way that specific conventions should be followed, these are defined below.
+## 4. Developing Custom Challenges (extendibility)
+The system is intended to be extendable with the idea that other developers should be able to develop and plug in their own CTF challenge modules, however, due to GraphQL's nature there are some design considerations to be made aware of before doing this. Additionally, the application has been designed in such a way that specific conventions should be followed, these are defined below.
+
+This documentation is a WIP
 
 ### 4.1 Declaring a New Challenge Module
 
